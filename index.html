@@ -19,16 +19,31 @@
   .wtab-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .6; display: block; margin-bottom: 1px; }
   .wtab.on .wtab-num { opacity: .8; }
   .wintro { padding: .85rem 1.5rem; background: #0f0f12; border-bottom: 1px solid #2a2520; }
-  .wfocus { font-size: 11px; color: #c9a84c; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px; }
+  .wtheme { font-size: 11px; color: #c9a84c; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 3px; }
   .wdesc { font-size: 12px; color: #7a7570; line-height: 1.5; }
-  .dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 7px; padding: 1rem 1.5rem; }
-  .dcard { background: #161618; border: 1px solid #2a2520; border-radius: 8px; padding: .7rem .8rem; cursor: pointer; transition: all .15s; }
+  .dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 7px; padding: 1rem 1.5rem; }
+  .dcard { background: #161618; border: 1px solid #2a2520; border-radius: 8px; padding: .7rem .8rem; cursor: pointer; transition: all .15s; position: relative; }
   .dcard:hover { border-color: #c9a84c; }
   .dcard.on { border-color: #c9a84c; background: #1a1408; }
+  .dcard.double { border-color: #3b2d6b; }
+  .dcard.double:hover { border-color: #a855f7; }
+  .dcard.double.on { border-color: #a855f7; background: #140d1f; }
+  .dcard.event { border-color: #1a3a20; }
+  .dcard.event:hover { border-color: #4ade80; }
+  .dcard.event.on { border-color: #4ade80; background: #0a1f0d; }
+  .dpill { position: absolute; top: 6px; right: 6px; font-size: 8px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border-radius: 10px; }
+  .dpill.double { background: #3b2d6b; color: #a855f7; }
+  .dpill.event { background: #1a3a20; color: #4ade80; }
+  .dpill.series { background: #1a1408; color: #c9a84c; }
   .dnum { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; line-height: 1; margin-bottom: 3px; color: #e8e6e0; }
   .dcard.on .dnum { color: #c9a84c; }
+  .dcard.double.on .dnum { color: #a855f7; }
+  .dcard.event.on .dnum { color: #4ade80; }
   .dtype { font-size: 9.5px; font-weight: 500; color: #5a5550; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
   .dtopic { font-size: 11px; color: #7a7570; line-height: 1.35; }
+  .legend { display: flex; gap: 12px; padding: .5rem 1.5rem .75rem; flex-wrap: wrap; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #5a5550; }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; }
   .panel { margin: 0 1.5rem 1rem; border: 1px solid #2a2520; border-radius: 12px; overflow: hidden; background: #161618; }
   .phdr { padding: .9rem 1.1rem; border-bottom: 1px solid #2a2520; display: flex; align-items: flex-start; gap: 9px; flex-wrap: wrap; }
   .dbadge { background: #1a1408; color: #c9a84c; border: 1px solid #c9a84c; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; margin-top: 2px; }
@@ -42,417 +57,595 @@
   .chip:hover { border-color: #c9a84c; color: #c9a84c; }
   .chip.on { background: #1a1408; color: #c9a84c; border-color: #c9a84c; }
   .out { padding: 1.25rem; }
-  .section { margin-bottom: 1.4rem; }
-  .section:last-child { margin-bottom: 0; }
-  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c9a84c; margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
-  .sec-label::after { content: ''; flex: 1; height: 1px; background: #2a2520; }
-  .hook-box { background: #0f0f12; border-left: 3px solid #c9a84c; border-radius: 0 6px 6px 0; padding: .75rem 1rem; font-size: 13.5px; font-style: italic; color: #e8e6e0; line-height: 1.6; margin-bottom: .5rem; }
-  .hook-box:last-child { margin-bottom: 0; }
-  .prompt-box { background: #0a0a0c; border: 1px solid #2a2520; border-radius: 8px; padding: .85rem 1rem; font-family: monospace; font-size: 12px; color: #a855f7; line-height: 1.7; white-space: pre-wrap; }
-  .copy-btn { margin-top: .6rem; padding: .4rem .9rem; background: #1a1408; border: 1px solid #c9a84c; border-radius: 6px; color: #c9a84c; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
+  .post-block { background: #0f0f12; border: 1px solid #2a2520; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+  .post-block:last-child { margin-bottom: 0; }
+  .post-block.p2 { border-color: #3b2d6b; }
+  .post-block.event-block { border-color: #1a3a20; }
+  .post-num { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c9a84c; margin-bottom: .75rem; display: flex; align-items: center; gap: 6px; }
+  .post-num.p2 { color: #a855f7; }
+  .post-num.event-num { color: #4ade80; }
+  .post-num::after { content: ''; flex: 1; height: 1px; background: #2a2520; }
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #5a5550; margin: .85rem 0 .4rem; }
+  .hook-box { background: #161618; border-left: 3px solid #c9a84c; border-radius: 0 6px 6px 0; padding: .65rem .9rem; font-size: 13px; font-style: italic; color: #e8e6e0; line-height: 1.6; margin-bottom: .4rem; }
+  .hook-box.p2hook { border-left-color: #a855f7; }
+  .hook-box.eventhook { border-left-color: #4ade80; }
+  .prompt-box { background: #0a0a0c; border: 1px solid #2a2520; border-radius: 8px; padding: .8rem 1rem; font-family: monospace; font-size: 11.5px; color: #a855f7; line-height: 1.7; white-space: pre-wrap; }
+  .copy-btn { margin-top: .5rem; padding: .35rem .85rem; background: #1a1408; border: 1px solid #c9a84c; border-radius: 6px; color: #c9a84c; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
   .copy-btn:hover { background: #c9a84c; color: #0a0a0c; }
-  .cta-box { background: #0f0f12; border: 1px solid #2a2520; border-radius: 8px; padding: .75rem 1rem; font-size: 13px; color: #e8e6e0; line-height: 1.6; }
-  .life-box { background: #0f0f12; border: 1px solid #2a2520; border-radius: 8px; padding: .75rem 1rem; font-size: 12.5px; color: #7a7570; line-height: 1.6; font-style: italic; }
+  .cta-box { background: #161618; border: 1px solid #2a2520; border-radius: 6px; padding: .65rem .9rem; font-size: 13px; color: #e8e6e0; line-height: 1.6; }
+  .life-box { background: #0a1f0d; border: 1px solid #1a3a20; border-radius: 6px; padding: .65rem .9rem; font-size: 12px; color: #7aaa80; line-height: 1.6; font-style: italic; margin-top: .75rem; }
+  .life-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4ade80; margin-bottom: 3px; }
+  .series-tag { display: inline-block; background: #1a1408; border: 1px solid #c9a84c; color: #c9a84c; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: .6rem; letter-spacing: .05em; }
   .banner { margin: 0 1.5rem 2rem; background: #0a0a0c; border: 1px solid #2a2520; border-radius: 8px; padding: .85rem 1.1rem; }
   .banner p { font-size: 12px; color: #5a5550; line-height: 1.55; }
   .banner strong { color: #c9a84c; }
-  @media (max-width: 480px) {
-    .wnav, .dgrid { padding: .75rem 1rem; }
-    .panel, .banner { margin-left: 1rem; margin-right: 1rem; }
-  }
+  @media(max-width:480px){ .wnav,.dgrid{padding:.75rem 1rem;} .panel,.banner{margin-left:1rem;margin-right:1rem;} }
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script>
+var NICHES=["Business","Fitness","Wellness","Real Estate","Marketing","Personal Development","Lifestyle"];
+var S={week:0,day:null,niche:"Business"};
+var PLANS={};
+
+// flags: double=2 posts, event=real life event day, series=part of series
 var WEEKS=[
-  {num:1, label:"Week 1", theme:"Excitement & Discovery",
-   goal:"You just found something real. Share the excitement. Announce the challenge. Start using SHIFT every day — Chat and Image tools only. Let your audience feel your energy.",
-   desc:"Post daily. Use SHIFT Chat to write your captions and scripts. Use SHIFT Image to create visuals. Document everything. Be the beginner — it's your superpower right now.",
+  {num:1,label:"Week 1",theme:"Excitement & Discovery",
+   goal:"You just found something real. Announce it. Share the excitement. Use SHIFT Chat and Image every single day. Be the beginner — it's your biggest asset right now.",
    days:[
-    {day:1, type:"Talking Head", topic:"Announce your 30-day SHIFT challenge to the world"},
-    {day:2, type:"Photo Post", topic:"Who you are and what shaped you — your story"},
-    {day:3, type:"AI Image", topic:"Your future goals visualized using SHIFT"},
-    {day:4, type:"Talking Head", topic:"A mistake that taught you something real"},
-    {day:5, type:"Quote Graphic", topic:"A motivational graphic made in SHIFT — your message"},
-    {day:6, type:"Talking Head", topic:"What you want to be known for and why"},
-    {day:7, type:"Reflection", topic:"Week 1 honest recap — wins, surprises, and what's next"}
+    {day:1,type:"Talking Head",topic:"Announce the 30-day SHIFT challenge",flags:[]},
+    {day:2,type:"Double Post",topic:"Your story + your first SHIFT creation",flags:["double"]},
+    {day:3,type:"Building in Public #1",topic:"Show SHIFT creating your content live",flags:["series"]},
+    {day:4,type:"Talking Head + AI Image",topic:"A hard lesson + your vision in SHIFT",flags:["double"]},
+    {day:5,type:"Event Day",topic:"Invite someone for coffee or a Zoom — document it",flags:["event"]},
+    {day:6,type:"Building in Public #2",topic:"What SHIFT made today — the real process",flags:["series"]},
+    {day:7,type:"Week 1 Finale",topic:"Honest recap + tease what's coming",flags:["double"]}
   ]},
-  {num:2, label:"Week 2", theme:"Learning & Teaching",
-   goal:"You're not an expert — you're a student sharing what you're learning. Teach your niche. Show SHIFT creating your content. Bring your audience into the process.",
-   desc:"Use SHIFT Chat every day to write your posts. Screenshot the process. Share your ROI calculator results. Invite people to a Zoom, coffee date, or team meet. Connection is the content.",
+  {num:2,label:"Week 2",theme:"Learning & Teaching",
+   goal:"Teach your niche. Host real events. Show SHIFT doing the heavy lifting. Invite people to Zooms and coffee dates. The connection IS the content.",
    days:[
-    {day:8, type:"Talking Head", topic:"An honest opinion your industry doesn't talk about enough"},
-    {day:9, type:"Educational", topic:"The one thing beginners in your niche need to hear"},
-    {day:10, type:"AI Image", topic:"What success looks like — created with SHIFT"},
-    {day:11, type:"Talking Head", topic:"3 mistakes people make — and how to avoid them"},
-    {day:12, type:"Behind Scenes", topic:"Show SHIFT creating your content in real time"},
-    {day:13, type:"Lifestyle", topic:"A real life moment — coffee, hike, dinner, meet-up"},
-    {day:14, type:"Reflection", topic:"Week 2 recap — what you learned and who you connected with"}
+    {day:8,type:"Bold Opinion",topic:"The honest truth your industry won't say",flags:[]},
+    {day:9,type:"Double Post",topic:"Teach one thing + show SHIFT writing it",flags:["double"]},
+    {day:10,type:"Event Day",topic:"Host your first SHIFT Zoom or coffee date",flags:["event"]},
+    {day:11,type:"Building in Public #3",topic:"3 mistakes — written live in SHIFT Chat",flags:["series"]},
+    {day:12,type:"Vault Drop",topic:"Share something powerful from the SHIFT Vault",flags:[]},
+    {day:13,type:"Double Post",topic:"Real life moment + ROI calculator reveal",flags:["double","event"]},
+    {day:14,type:"Week 2 Recap",topic:"What you built, who you met, what changed",flags:[]}
   ]},
-  {num:3, label:"Week 3", theme:"Curiosity & Connection",
-   goal:"Make people wonder what you're using. Make them feel the momentum. Share real moments — Zooms, coffee dates, dinners, hikes. Show SHIFT as part of your actual life.",
-   desc:"Host something this week — a Zoom, a coffee date, a dinner, a hike. Post about it. Share from the Vault. Show the ROI calculator to someone new. Bring people into your world.",
+  {num:3,label:"Week 3",theme:"Curiosity & Connection",
+   goal:"Make people wonder what you're using. Host real events. Show SHIFT as part of your actual life — not just your phone.",
    days:[
-    {day:15, type:"Talking Head", topic:"Most people don't realize this about [your niche]…"},
-    {day:16, type:"AI Image", topic:"Your vision for the future — made with SHIFT"},
-    {day:17, type:"Real Moment", topic:"A coffee, zoom, dinner or hike — document the connection"},
-    {day:18, type:"Vault Share", topic:"Share something from the SHIFT Vault with your audience"},
-    {day:19, type:"Talking Head", topic:"The early adopter opportunity — what you see that others don't"},
-    {day:20, type:"Talking Head", topic:"What SHIFT has helped you create and do so far"},
-    {day:21, type:"Recap", topic:"Week 3 — the connections, the content, and the momentum"}
+    {day:15,type:"Building in Public #4",topic:"Most people don't realize… made with SHIFT",flags:["series"]},
+    {day:16,type:"Double Post",topic:"Vision image + the story behind it",flags:["double"]},
+    {day:17,type:"Event Day",topic:"Dinner, hike or meetup — document the connection",flags:["event"]},
+    {day:18,type:"Vault Drop + Opinion",topic:"Share from Vault + challenge a belief",flags:["double"]},
+    {day:19,type:"Building in Public #5",topic:"Early adopter opportunity — made with SHIFT",flags:["series"]},
+    {day:20,type:"Event Day",topic:"Host a Zoom — invite your most engaged followers",flags:["event"]},
+    {day:21,type:"Week 3 Milestone",topic:"30 days building — the real story so far",flags:["double"]}
   ]},
-  {num:4, label:"Week 4", theme:"Keep Building",
-   goal:"This doesn't end at Day 30. The first 30 days was the beginning. Keep using SHIFT. Keep showing up. Keep connecting. New tools and studios are opening — you're ahead of everyone.",
-   desc:"Finish strong. Celebrate. Invite people in without pressure. Show what's possible. The people watching you for 30 days are ready — give them a reason to take the next step.",
+  {num:4,label:"Week 4",theme:"Keep Building",
+   goal:"This doesn't end at Day 30. Finish with more energy than you started. New studios are coming. The people watching you are ready. Give them a reason to take the next step.",
    days:[
-    {day:22, type:"Talking Head", topic:"Why early adopters always win — and you're one of them"},
-    {day:23, type:"AI Image", topic:"Your 3-year vision — built with SHIFT"},
-    {day:24, type:"Real Moment", topic:"Document a real connection — zoom, meet-up, or message that changed things"},
-    {day:25, type:"Lifestyle", topic:"What building on your own terms actually looks like"},
-    {day:26, type:"Educational", topic:"What SHIFT is — the simplest, most honest explanation"},
-    {day:27, type:"Talking Head", topic:"Your honest 27-day experience with SHIFT"},
-    {day:28, type:"Vault Share", topic:"Share a piece of SHIFT content that moved you"},
-    {day:29, type:"Talking Head", topic:"A soft, real invitation — no pitch, just truth"},
-    {day:30, type:"Celebration", topic:"Day 30 — what you built, who you became, what's next"}
+    {day:22,type:"Building in Public #6",topic:"Early adopters always win — here's why",flags:["series"]},
+    {day:23,type:"Double Post",topic:"3-year vision image + the daily reality",flags:["double"]},
+    {day:24,type:"Event Day",topic:"Host a dinner or hike — film the energy",flags:["event"]},
+    {day:25,type:"Honest Review",topic:"27 days with SHIFT — nothing held back",flags:[]},
+    {day:26,type:"Double Post",topic:"What SHIFT is + who it's for",flags:["double"]},
+    {day:27,type:"Vault Drop",topic:"The SHIFT content that moved you most",flags:[]},
+    {day:28,type:"Event Day",topic:"Final Zoom — invite everyone who's been watching",flags:["event"]},
+    {day:29,type:"Building in Public #7",topic:"The soft invite — no pitch, just truth",flags:["series"]},
+    {day:30,type:"Day 30 Finale",topic:"What you built, who you became, what's next",flags:["double"]}
   ]}
 ];
 
-var NICHES=["Business","Fitness","Wellness","Real Estate","Marketing","Personal Development","Lifestyle"];
-var S={week:0, day:null, niche:"Business"};
-var PLANS={};
-
-function pl(h1,h2,prompt,cta,life){
-  return [h1,h2,prompt,cta,life||""];
+// Helper
+function bl(label,isP2,isEvent){
+  var cls=isEvent?"event-num":isP2?"p2":"";
+  return '<div class="post-num '+cls+'">'+label+'</div>';
+}
+function hook(text,isP2,isEvent){
+  var cls=isEvent?" eventhook":isP2?" p2hook":"";
+  return '<div class="hook-box'+cls+'">'+text+'</div>';
+}
+function prompt(text,id){
+  return '<div class="prompt-box" id="prompt-'+id+'">'+text+'</div>'
+    +'<button class="copy-btn" data-pid="'+id+'">Copy prompt</button>';
+}
+function cta(text){ return '<div class="cta-box">'+text+'</div>'; }
+function life(text){ return '<div class="life-box"><div class="life-label">&#9670; Real Life Action</div>'+text+'</div>'; }
+function series(text){ return '<div class="series-tag">&#9654; Building in Public Series</div>'; }
+function post(num,label,isP2,isEvent,content){
+  var bk=isEvent?"event-block":isP2?"p2":"";
+  return '<div class="post-block '+bk+'">'+bl(label,isP2,isEvent)+content+'</div>';
 }
 
-// ── WEEK 1 ───────────────────────────────────────────────────────────────
-var w1=[
-  {day:1,
-   h1:"I just found something and I can't stop thinking about it. I'm doing a 30-day challenge — and I'm documenting every single day publicly…",
-   h2:"Day 1. I committed to 30 days of showing up, creating, and building — using SHIFT as my tool. Here's why I'm doing this and what I hope it becomes…",
-   prompts:{
-     "Business":"Write a genuine, excited 60-second talking head script for a business person announcing their 30-day SHIFT challenge. They are not a pro — they're an early adopter who sees the opportunity. Real, warm, and full of energy. End with: 'Follow along — I'm showing everything.'",
-     "Fitness":"Write an energetic 60-second script for a fitness person announcing their 30-day SHIFT challenge publicly. Excited beginner energy. Authentic and personal. End with an invitation to follow along.",
-     "Wellness":"Write a warm, heartfelt 60-second script for a wellness person starting their 30-day SHIFT challenge. Calm excitement, genuine purpose. End with a soft invitation to follow the journey.",
-     "Real Estate":"Write a confident 60-second script for a real estate person announcing their 30-day SHIFT challenge. Grounded, personable, and forward-thinking. End with an invitation to follow along.",
-     "Marketing":"Write a sharp 60-second script for a marketing person starting their 30-day SHIFT challenge publicly. Self-aware and bold. End with an invitation to follow every day.",
-     "Personal Development":"Write a vulnerable, inspiring 60-second script for someone starting their 30-day SHIFT challenge as a personal growth journey. Raw and real. End with: 'Come with me.'",
-     "Lifestyle":"Write a fun, magnetic 60-second script for a lifestyle person announcing their 30-day SHIFT challenge. Full of personality and genuine excitement. End with a warm invitation."
-   },
-   cta:"Comment 'IN' if you're following this journey — I post every single day.",
-   life:"Tonight: open SHIFT, explore the Chat and Image tools. Get familiar. Tomorrow you create."
-  },
-  {day:2,
-   h1:"Before I show you what I'm building, you need to know who I am and what brought me here…",
-   h2:"Day 2. My story — the real version. What shaped me, what I've learned, and why this moment feels different…",
-   prompts:{
-     "Business":"Write a compelling personal story caption for a business person sharing their background and what led them to SHIFT. Honest, specific, and relatable. End with a question inviting followers to share their story.",
-     "Fitness":"Write a personal fitness journey caption sharing the real story of what got them here and why SHIFT feels like the right next step. Vulnerable and motivating.",
-     "Wellness":"Write a heartfelt wellness story caption about their background and what drew them to this journey. Warm and genuine. End with an engaging personal question.",
-     "Real Estate":"Write a personal real estate story caption — who they are, what they've experienced, and why they're excited about this new chapter with SHIFT.",
-     "Marketing":"Write a personal marketing journey caption sharing their background honestly. Direct and insightful. End with a question for the audience.",
-     "Personal Development":"Write an inspiring personal story caption about the journey that brought them here and why they believe in this moment. Vulnerable and powerful.",
-     "Lifestyle":"Write a warm, personality-driven lifestyle story caption about who they are and what their life is really like. Inviting and real."
-   },
-   cta:"What's brought you to where you are right now? Share one line below.",
-   life:"Use SHIFT Chat to help write or refine this caption. Screenshot the process and share it in your story."
-  },
-  {day:3,
-   h1:"I typed my biggest goal into SHIFT and it created this image. I had to stop and just sit with it for a moment…",
-   h2:"Day 3. I used the SHIFT Image tool for the first time. Here's what I asked it to create — and here's what it means to me…",
-   prompts:{
-     "Business":"Create a bold, aspirational image representing a successful business entrepreneur — freedom, growth, impact, and confidence. Modern and inspiring.",
-     "Fitness":"Create a powerful image representing peak health, strength, and physical transformation. Dynamic and deeply motivating.",
-     "Wellness":"Create a serene, beautiful image representing a life of complete wellbeing — balanced, peaceful, and full of vitality.",
-     "Real Estate":"Create a stunning aspirational image representing real estate success — dream property, financial freedom, happy clients.",
-     "Marketing":"Create a bold image representing marketing mastery — brand impact, engaged audience, measurable success.",
-     "Personal Development":"Create an uplifting image representing personal transformation — confidence, clarity, and becoming your best self.",
-     "Lifestyle":"Create a beautiful lifestyle vision image — freedom, adventure, connection, abundance, and joy."
-   },
-   cta:"What's the vision you're working toward right now? Tell me in the comments.",
-   life:"This is your first real SHIFT Image creation. Share the prompt you used AND the result. People love seeing the process."
-  },
-  {day:4,
-   h1:"The mistake I made that I'm most grateful for. Here's the full story…",
-   h2:"Day 4. I'm going to tell you about a failure. Not because it was easy — because it matters and you might need to hear it…",
-   prompts:{
-     "Business":"Write a candid, honest 60-second talking head script about a real business mistake and the unexpected gift it gave. Self-aware and ultimately empowering for anyone building something new.",
-     "Fitness":"Write a relatable script about a fitness mistake — the kind people don't talk about — and what it really taught you. Personal and encouraging.",
-     "Wellness":"Write a compassionate script about a wellness mistake or habit that wasn't serving you and the shift that followed. Gentle and honest.",
-     "Real Estate":"Write a professional but human script about a real estate experience that went wrong and what it changed about how you work.",
-     "Marketing":"Write a direct script about a marketing mistake that cost time or money and the counterintuitive lesson that came from it.",
-     "Personal Development":"Write a vulnerable script about a mindset or habit that kept you stuck and the moment everything cracked open.",
-     "Lifestyle":"Write a warm personal script about a choice or season of life that wasn't working and what changed when you let it go."
-   },
-   cta:"What's a mistake you made that ended up being exactly what you needed? Share it below.",
-   life:"Run the SHIFT ROI calculator today. Screenshot your results. You don't have to share the numbers — but see what's possible."
-  },
-  {day:5,
-   h1:"I made this in SHIFT in under 2 minutes. Here's the quote and why it lives rent-free in my head…",
-   h2:"Day 5. Created this graphic using SHIFT Image. The message behind it is something I come back to every time things feel hard…",
-   prompts:{
-     "Business":"Create a bold motivational graphic for entrepreneurs and early adopters. Dark background, gold text, powerful font. Quote: 'The people who move first build the most.'",
-     "Fitness":"Create an energetic fitness motivation graphic. Strong imagery, bold typography. Quote: 'Your body keeps the score. Train accordingly.'",
-     "Wellness":"Create a peaceful wellness graphic with soft natural imagery. Elegant font. Quote: 'Healing is not linear. Keep going anyway.'",
-     "Real Estate":"Create a sleek real estate motivation graphic. Clean modern design. Quote: 'Every great investment started with one decision.'",
-     "Marketing":"Create a sharp marketing motivation graphic. High contrast, clean layout. Quote: 'The best marketing feels like a conversation.'",
-     "Personal Development":"Create a minimalist personal growth graphic. Clean and powerful. Quote: 'You are always one decision away from a different life.'",
-     "Lifestyle":"Create a warm aspirational lifestyle graphic. Bright and inviting. Quote: 'Build a life you don't need a vacation from.'"
-   },
-   cta:"Save this if it lands. Share it with someone who needs it today.",
-   life:"Post this graphic AND show a behind-the-scenes of creating it in SHIFT. Two pieces of content in one."
-  },
-  {day:6,
-   h1:"Day 6 and I want to be clear about something — who I am, what I stand for, and what I'm actually building here…",
-   h2:"If you've been following along and wondering what this is really about — here's the honest answer…",
-   prompts:{
-     "Business":"Write a confident, natural 60-second script where a business person shares their personal brand clearly — who they are, who they help, what they're building with SHIFT, and why it matters. Real, not rehearsed.",
-     "Fitness":"Write an energetic 60-second script where a fitness person shares their mission, their people, and how SHIFT is helping them build something bigger than just posts.",
-     "Wellness":"Write a warm 60-second script where a wellness person shares what they stand for, who they serve, and how SHIFT fits into the life they're creating.",
-     "Real Estate":"Write a grounded 60-second script where a real estate person shares their values, their community, and how SHIFT is part of their bigger vision.",
-     "Marketing":"Write a sharp 60-second script where a marketing person explains their personal brand, their unique angle, and how SHIFT is accelerating what they're building.",
-     "Personal Development":"Write an inspiring 60-second script where a personal development person shares their mission, their 'why', and how SHIFT is helping them show up and serve at a higher level.",
-     "Lifestyle":"Write a personality-driven 60-second script where a lifestyle creator shares what they're really about, the life they're building, and how SHIFT is part of that story."
-   },
-   cta:"What do you want to be known for? Drop it below — I read every single one.",
-   life:"Invite someone you care about to a coffee date or Zoom this week. Not to pitch — to connect. Document it for Day 17."
-  },
-  {day:7,
-   h1:"One week in. Here's the honest truth about how it actually went…",
-   h2:"Day 7. Seven days of showing up publicly. Here's what surprised me, what I got wrong, and why I'm more committed than ever…",
-   prompts:{
-     "Business":"Write an honest, warm Week 1 recap caption for a business person doing a 30-day SHIFT challenge. Share real moments — what SHIFT created, what connected, what they're taking into Week 2.",
-     "Fitness":"Write an energetic Week 1 recap for a fitness person on the SHIFT challenge. Celebrate the start, be real about the process, tease the energy coming in Week 2.",
-     "Wellness":"Write a gentle, grateful Week 1 recap for a wellness person. What they felt, what SHIFT helped them create, and a soft forward-looking intention for Week 2.",
-     "Real Estate":"Write a grounded Week 1 recap for a real estate person. What they created with SHIFT, what their audience responded to, and what they're doubling down on.",
-     "Marketing":"Write a smart Week 1 recap for a marketing person. What worked, what the data showed, what SHIFT made easier, and what they're testing next.",
-     "Personal Development":"Write a reflective Week 1 recap for a personal development person. What shifted inside them, what SHIFT helped them express, and who they're becoming.",
-     "Lifestyle":"Write a warm, personal Week 1 lifestyle recap. Real moments, real reactions, and genuine excitement for what's ahead."
-   },
-   cta:"What's been your favourite post this week? Tell me — it shapes what I create next.",
-   life:"Share your Week 1 story highlights — real reactions, screenshots of what you created in SHIFT, and a 'thank you' to everyone who's been following."
-  }
-];
+// ── WEEK 1 ────────────────────────────────────────────────────────────────
 
-w1.forEach(function(d){
-  NICHES.forEach(function(n){
-    var prompt=typeof d.prompts==="object"?d.prompts[n]:d.prompts;
-    PLANS[d.day+"-"+n]=pl(d.h1,d.h2,prompt,d.cta,d.life);
-  });
+// Day 1
+NICHES.forEach(function(n){
+  PLANS["1-"+n]=post(1,"Post — Talking Head",false,false,
+    hook("I just found something and I cannot stop thinking about it. I'm doing a 30-day challenge and documenting every single day publicly. Here's why…",false,false)+
+    hook("Day 1. I committed to 30 days of showing up and creating — using SHIFT as my only tool. Here's what I'm building and what I actually hope this becomes…",false,false)+
+    '<div class="sec-label">SHIFT Prompt — paste into SHIFT Chat</div>'+
+    prompt("Write a genuine, excited 60-second talking head script for someone in "+n+" announcing their 30-day SHIFT challenge publicly. They are NOT an expert — they're an early adopter who sees the opportunity and wants to share the journey. Warm, real, and full of energy. End with: 'Follow along — I'm showing everything. Day 2 tomorrow.'","1a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Comment 'IN' if you're following this. I post every single day for 30 days.")+
+    life("Open SHIFT tonight. Explore Chat and Image. Don't create yet — just get comfortable. Tomorrow you go live.")
+  );
 });
 
-// ── WEEK 2 ───────────────────────────────────────────────────────────────
-var w2=[
-  {day:8,
-   h1:"I'm going to say something about my industry that most people are too polished to admit…",
-   h2:"Unpopular opinion time. Day 8 and I'm done playing it safe. Here's what I actually think about [niche]…",
-   prompt:"Write a bold, respectful 60-second talking head script sharing an honest opinion about [NICHE] that most people won't say out loud. Not inflammatory — real. Backed by personal experience. Created with SHIFT Chat. End with an invitation for honest discussion.",
-   cta:"Agree or disagree? Say it below. I want the real conversation.",
-   life:"After posting, reach out personally to 5 people in your audience. Not to pitch — just to connect."
-  },
-  {day:9,
-   h1:"If you're just starting in [niche], here is the single most important thing I wish someone had told me…",
-   h2:"Day 9. One thing. Not ten. Not five. The one concept in [niche] that changes everything when you finally get it…",
-   prompt:"Write a clear, helpful educational caption teaching the single most important foundational concept in [NICHE] to someone just starting out. No jargon, no fluff. Written using SHIFT Chat. Ends with a CTA to save and share.",
-   cta:"Save this and share it with someone in [niche] who needs it. This is the thing nobody tells you early enough.",
-   life:"Share the SHIFT Chat screenshot of you generating this content. Show the tool working in real time."
-  },
-  {day:10,
-   h1:"I asked SHIFT to create what success looks like in my world. Here's the image — and the story behind it…",
-   h2:"Day 10. Used SHIFT Image today. I typed what I wanted success to look like and this is what appeared…",
-   prompt:"Create a striking, aspirational image that represents success and fulfillment in [NICHE]. The kind of image that stops someone mid-scroll. Bold, specific, and deeply motivating.",
-   cta:"What does your version of success look like right now? One sentence — drop it below.",
-   life:"Show the prompt you used in SHIFT Image alongside the final result. The process is as interesting as the output."
-  },
-  {day:11,
-   h1:"The 3 mistakes I see people make in [niche] constantly. I made all three of them myself…",
-   h2:"Day 11. Nobody talks about these. But they're costing people in [niche] more than they know…",
-   prompt:"Write a direct, practical 60-second talking head script covering 3 common mistakes in [NICHE]. Each mistake clearly named, briefly explained, and quickly fixed. Written with SHIFT Chat. Ends with a CTA asking which one they've made.",
-   cta:"Which one hit you? Comment 1, 2, or 3. No judgment — we've all been there.",
-   life:"Invite someone to explore SHIFT with you. Not as a pitch — as a genuine 'I want to show you something cool.'"
-  },
-  {day:12,
-   h1:"Watch me create today's post using SHIFT in real time. This is exactly what 2 minutes of AI looks like…",
-   h2:"Day 12. Behind the scenes. I'm showing you exactly how I use SHIFT Chat to create content — live, unfiltered, real…",
-   prompt:"Write a behind-the-scenes caption explaining the exact process of using SHIFT Chat to create content for [NICHE]. Include what you typed, what it produced, and what you changed. Honest and educational. Makes people want to try it themselves.",
-   cta:"What would you ask SHIFT to create for you first? Tell me below.",
-   life:"Record a screen capture or talk to camera while using SHIFT. Let people see the real-time magic. This post will get questions."
-  },
-  {day:13,
-   h1:"This is what building with SHIFT actually looks like in real life. No studio. No filter. Just this…",
-   h2:"Day 13. Real life moment. A [coffee / zoom / dinner / hike] that reminded me why I'm doing this…",
-   prompt:"Write a warm, personal lifestyle caption about a real-life connection moment — a coffee date, Zoom call, dinner, or outdoor meet-up — where SHIFT came up naturally. Authentic and human. Shows that this is about people, not just content.",
-   cta:"Who are you building alongside right now? Tag them or tell me about them below.",
-   life:"Document this real-life connection moment. Photo, video, screenshot of a conversation. This is the content that converts."
-  },
-  {day:14,
-   h1:"Two weeks in. Here's everything — what I created, who I connected with, and what SHIFT made possible…",
-   h2:"Day 14. Week 2 done. Honest update on my 30-day SHIFT challenge — the numbers, the moments, and the momentum…",
-   prompt:"Write a genuine, excited Week 2 recap caption for someone doing a 30-day SHIFT challenge in [NICHE]. Mention real content created with SHIFT Chat and Image, real connections made, and build real anticipation for Week 3.",
-   cta:"If you've been following — what's landed most for you so far? Tell me. It helps me serve you better.",
-   life:"Week 2 story: share screenshots of your best SHIFT creations this week. Show the vault, show the chat, show the results."
-  }
-];
-
-w2.forEach(function(d){
-  NICHES.forEach(function(n){
-    PLANS[d.day+"-"+n]=pl(
-      d.h1.replace(/\[niche\]/g,n),
-      d.h2.replace(/\[niche\]/g,n),
-      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
-      d.cta.replace(/\[niche\]/g,n),
-      d.life
+// Day 2 - Double post
+NICHES.forEach(function(n){
+  PLANS["2-"+n]=
+    post(1,"Post 1 — Your Story",false,false,
+      hook("Before you see what I'm building, you need to know who I am and what brought me here…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a compelling personal story caption for someone in "+n+" sharing their background honestly — what shaped them, what they've been through, and why this moment with SHIFT feels different. Real, specific, and ends with a question that invites followers to share their own story.","2a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What's brought you to where you are right now? Drop one line below.")
+    )+
+    post(2,"Post 2 — First SHIFT Creation",true,false,
+      hook("I just used SHIFT for the first time. Here's what I created and what it made me feel…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Create a bold, aspirational image representing the future vision of someone just starting their journey in "+n+". Powerful enough to make them stop scrolling. Then write a short caption revealing the image, explaining what prompted it, and inviting followers to imagine their own version.","2b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What would YOU create if you had an AI tool right now? Tell me.")+
+      life("Share a behind-the-scenes Story of creating this image in SHIFT. Show the prompt you typed. People love the process.")
     );
-  });
 });
 
-// ── WEEK 3 ───────────────────────────────────────────────────────────────
-var w3=[
-  {day:15,
-   h1:"Most people in [niche] don't realize this — and by the time they do, the window has already moved…",
-   h2:"Day 15. Something I've been sitting on for a while. Most people don't see this yet — but they will soon…",
-   prompt:"Write an eye-opening 60-second talking head script that starts with 'Most people don't realize...' for someone in [NICHE]. Insight-driven, specific, and creates genuine curiosity. Feels like insider knowledge. Naturally created using SHIFT Chat.",
-   cta:"What's something in your world that most people completely miss? Tell me below.",
-   life:"After this post goes up, reach out to 3 people privately. Share the SHIFT ROI calculator. Not as a pitch — as a genuine 'have you seen this?'"
-  },
-  {day:16,
-   h1:"I created my vision in SHIFT today. When I saw the image, something clicked that I can't fully explain…",
-   h2:"Day 16. I typed where I want to be in 3 years into SHIFT Image. Here's what appeared — and here's what it means…",
-   prompt:"Create a breathtaking, specific aspirational image representing the ultimate 3-year vision for someone building in [NICHE] with SHIFT — freedom, impact, financial independence, and genuine fulfillment. The kind of image that gives someone goosebumps.",
-   cta:"What are you building toward? Describe your 3-year vision in one sentence.",
-   life:"Share this image in your stories and ask: 'What would your version look like?' Let SHIFT create versions for people who reply."
-  },
-  {day:17,
-   h1:"I had a [coffee / dinner / hike / zoom] this week that I have to tell you about. This is what building something real looks like…",
-   h2:"Day 17. A moment off-screen that deserves to be on-screen. Real connection. Real conversation. Real momentum…",
-   prompt:"Write a warm, genuine caption about a real-life connection moment this week — coffee, dinner, hike, or Zoom — where SHIFT came up or where building something together became real. Shows the human side of this journey in [NICHE].",
-   cta:"Who's been part of your building journey lately? Give them a shoutout or tell me about them.",
-   life:"This is one of the most powerful posts of the 30 days. Real human moments outperform polished content every time."
-  },
-  {day:18,
-   h1:"Something from the SHIFT Vault that genuinely stopped me. I had to share this with you…",
-   h2:"Day 18. There's content inside SHIFT that most people haven't found yet. I want to show you something from the Vault…",
-   prompt:"Write an engaging caption for sharing a piece of content from the SHIFT Vault with a [NICHE] audience. Build curiosity about what's inside SHIFT. Make it feel like you're giving them early access to something valuable. Don't oversell — let the content speak.",
-   cta:"Have you explored the SHIFT Vault yet? If you're curious what's in there, send me a message.",
-   life:"Share directly from the SHIFT Vault today. Restamp it. Add your own caption. This is one of the most underused tools in SHIFT."
-  },
-  {day:19,
-   h1:"The early adopter window is real. And most people won't believe it until it's already closed. Here's what I see…",
-   h2:"Day 19. I want to talk about timing. About what it means to be early. And why I think now is that moment for SHIFT…",
-   prompt:"Write a compelling 60-second talking head script about the early adopter opportunity with SHIFT for someone in [NICHE]. Not hyped — grounded and real. Share what you genuinely see and why you believe the timing matters. Invite people to take a closer look.",
-   cta:"Are you someone who moves early or waits for proof? No wrong answer — tell me honestly.",
-   life:"Host a Zoom or coffee this week specifically to show someone the SHIFT platform. Document it. Post about it. The conversation is the content."
-  },
-  {day:20,
-   h1:"20 days using SHIFT. Here's everything it's actually helped me do — honest, unfiltered, no fluff…",
-   h2:"Day 20. Real talk. Here's what SHIFT has created for me, what surprised me, and what I think every person in [niche] should know about it…",
-   prompt:"Write a natural, honest 60-second talking head script reviewing 20 days of using SHIFT for someone in [NICHE]. Share specific things it helped create, real moments it enabled, and why you'd genuinely recommend it. Sounds like a friend talking, not a testimonial.",
-   cta:"Curious about SHIFT? Drop a question below — I'll answer every single one honestly.",
-   life:"This is your most powerful organic SHIFT post so far. Share it, reshare it, and send it personally to people you think need to see it."
-  },
-  {day:21,
-   h1:"Week 3 done. 21 days in. Here's the honest scorecard — the content, the connections, and the compound effect…",
-   h2:"Day 21. Three weeks of showing up every day. Here's what that actually looks like when you add it all up…",
-   prompt:"Write an energized, honest Week 3 recap caption for a [NICHE] creator doing a 30-day SHIFT challenge. Highlight real content created, real connections made, real life moments — and build genuine excitement for the final week.",
-   cta:"What's been your favourite moment from my 30-day journey so far? I'd genuinely love to know.",
-   life:"Week 3 story: show the full picture — content created, people connected with, real life moments. Let people feel the momentum."
-  }
-];
+// Day 3 - Building in Public #1
+NICHES.forEach(function(n){
+  PLANS["3-"+n]=post(1,"Building in Public #1 — The Process",false,false,
+    series()+
+    hook("I'm going to show you exactly how I create content using SHIFT. No cuts. No edits. The real thing…",false,false)+
+    hook("Day 3. Building in Public. Watch me use SHIFT Chat to write today's post from scratch. Here's the prompt I used and what it created…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a behind-the-scenes caption for someone in "+n+" showing their real process of using SHIFT Chat to create content. Include: what they typed into SHIFT, what it produced, what they changed, and why it took under 3 minutes. Ends with a question making people want to try it themselves.","3a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("What's one piece of content you WISH you could create but never have time for? Tell me — I'll show you how SHIFT does it.")+
+    life("Screenshot the actual SHIFT Chat conversation. Post that screenshot in your Stories with a poll: 'Would you try this?'")
+  );
+});
 
-w3.forEach(function(d){
-  NICHES.forEach(function(n){
-    PLANS[d.day+"-"+n]=pl(
-      d.h1.replace(/\[niche\]/g,n),
-      d.h2.replace(/\[niche\]/g,n),
-      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
-      d.cta,
-      d.life
+// Day 4 - Double post
+NICHES.forEach(function(n){
+  PLANS["4-"+n]=
+    post(1,"Post 1 — The Lesson",false,false,
+      hook("The mistake I made that I'm most grateful for. Nobody talks about this one…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a candid 60-second talking head script for someone in "+n+" sharing a real failure — what happened, what it cost them, and the unexpected gift it gave them. Self-aware, human, and ultimately empowering. The kind of story people screenshot and send to friends.","4a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What's a mistake you made that turned out to be exactly what you needed?")
+    )+
+    post(2,"Post 2 — Vision Drop",true,false,
+      hook("While I'm being honest today — here's what I'm actually building toward. I made this image in SHIFT…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Create a striking visual image representing the bold future vision of someone in "+n+" — freedom, success, impact, and belonging. Then write 3 sentences explaining what the image means to them personally and what they're doing every day to close the gap between now and that future.","4b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Save this if it resonates. And tell me — what are you building toward?")+
+      life("These two posts work together. Post the lesson in the morning. Drop the vision image in the evening. Let the vulnerability of Post 1 make Post 2 land harder.")
     );
-  });
 });
 
-// ── WEEK 4 ───────────────────────────────────────────────────────────────
-var w4=[
-  {day:22,
-   h1:"Early adopters don't wait for permission. They move when they see the signal. Here's what the signal looks like right now…",
-   h2:"Day 22. Let me tell you about the window. The one that's open right now — and won't stay open forever…",
-   prompt:"Write a grounded, compelling 60-second script about why being an early adopter with SHIFT matters for someone in [NICHE]. Not hype — genuine perspective from someone who's been using it for 22 days. What they see. Why they believe in the timing.",
-   cta:"Are you someone who sees opportunity early or waits for everyone else to go first? Tell me honestly.",
-   life:"Reach out to your most engaged followers personally this week. Not to pitch — to start a real conversation."
-  },
-  {day:23,
-   h1:"Day 23 and I created my 3-year vision in SHIFT today. This image is everything I'm working toward…",
-   h2:"I typed where I want to be into SHIFT Image. What came back stopped me. Here's my future — and here's what I'm doing to build it…",
-   prompt:"Create a powerful, specific future vision image for a [NICHE] person building with SHIFT — financial freedom, meaningful work, strong community, and time to live fully. The kind of image that makes someone say 'I want that life.'",
-   cta:"What does your version of this life look like? Describe it below — I read every reply.",
-   life:"Share this image everywhere today. In stories, in DMs to people you care about, in your Zoom this week. Let it start conversations."
-  },
-  {day:24,
-   h1:"A moment this week that reminded me exactly why I started this. Let me show you what building really looks like…",
-   h2:"Day 24. Off-screen turned into on-screen. A connection — a zoom, a coffee, a message — that changed the way I see what we're building…",
-   prompt:"Write a warm, genuine caption about a real connection moment in Week 4 — a Zoom, coffee, dinner, message, or meet-up — that reinforced why this journey matters for someone in [NICHE]. Human, specific, and emotionally resonant.",
-   cta:"Who's been the most unexpected person to reach out to you on this journey? Tell me about them.",
-   life:"Document this connection. Photo, screenshot, short video. This post will get more DMs than almost anything you've shared."
-  },
-  {day:25,
-   h1:"This is what building on your own terms actually looks like. Not the highlight reel — the real version…",
-   h2:"Day 25. What I want you to see isn't perfection. It's possibility. Here's what this month has actually felt like…",
-   prompt:"Write a personal, grounded lifestyle caption about what it genuinely looks and feels like to be building with SHIFT in [NICHE] — the freedom, the learning curve, the connections, and the moments that make it all worth it.",
-   cta:"What would 'building on your own terms' look like for you? One sentence. Drop it below.",
-   life:"This is a lifestyle post. Be present. Share a real moment from your day — not staged, not polished. Real is the brand."
-  },
-  {day:26,
-   h1:"People have been asking me what SHIFT actually is. Here's the most honest, simple answer I can give…",
-   h2:"Day 26. Let me explain this platform in plain language. What it does, who it's for, and why I've been using it every day for almost a month…",
-   prompt:"Write a clear, simple 60-second script explaining what SHIFT is for someone in [NICHE] who has never heard of it. No jargon. No hype. Just: here's the platform, here's what it does, here's who it's for, here's how to find out more. Sounds like a trusted friend explaining something they love.",
-   cta:"Questions about SHIFT? Send me a message or drop them below. I'll answer everything — honestly.",
-   life:"After this post, make a list of everyone who's engaged with your SHIFT content over 30 days. Reach out to each one personally."
-  },
-  {day:27,
-   h1:"27 days using SHIFT. My honest, full, unfiltered review — everything I've created and everything I think…",
-   h2:"Day 27. Almost at the end. Here's what I've actually built with SHIFT, what I think of the platform, and who I'd genuinely recommend it to…",
-   prompt:"Write an authentic, personal 60-second review of using SHIFT for 27 days as a [NICHE] creator. Cover what you've created, what surprised you, what the community has been like, and who you'd recommend it to. Sounds like a real person, not a paid promotion.",
-   cta:"If you want to know more about SHIFT — the real story, not the sales page — send me a message. Happy to share everything.",
-   life:"Send this post to 10 people personally. Not as a pitch. Just: 'I made this — thought of you.'"
-  },
-  {day:28,
-   h1:"Something in the SHIFT Vault that I keep coming back to. I needed to share this one with you…",
-   h2:"Day 28. There's content inside SHIFT that belongs in front of more people. Today I'm sharing something from the Vault that genuinely moved me…",
-   prompt:"Write a compelling caption for resharing a meaningful piece of content from the SHIFT Vault to a [NICHE] audience. Add your personal perspective — why it resonated, what it made you think, and why your audience needs to see it. Authentic and generous.",
-   cta:"Have you explored the SHIFT Vault yet? If not — send me a message. I'll show you where to start.",
-   life:"Restamp content from the Vault today. This is one of the most underused and highest-value tools in SHIFT. Use it every week."
-  },
-  {day:29,
-   h1:"Day 29. One day left. And I want to say something to anyone who's been curious but hasn't made a move yet…",
-   h2:"No pitch. No pressure. Just the honest truth from someone who's been inside SHIFT for 29 days and wants to tell you what they found…",
-   prompt:"Write a warm, low-pressure 60-second talking head script inviting people in [NICHE] to learn more about SHIFT. Not a sales pitch — a genuine, human invitation. Share what you found, why you think it matters, and end simply with: 'Send me a message if you're curious. I'll tell you everything — no pressure at all.'",
-   cta:"Curious? Send me a message. No pitch, no pressure — just an honest conversation.",
-   life:"Make a list of everyone you want to personally follow up with after Day 30. This is the moment they've been watching you build toward."
-  },
-  {day:30,
-   h1:"Day 30. Thirty days. Thirty posts. One platform. Here's everything I built — and everything I became…",
-   h2:"This is the finale. The honest, full, grateful truth about what 30 days with SHIFT gave me — and what it might give you…",
-   prompt:"Write a powerful, celebratory 30-day finale script for a [NICHE] creator. Share what you built with SHIFT Chat and Image, the connections you made, the real life moments, the growth. Be genuinely grateful. End with warmth and a real invitation: 'If you're curious about SHIFT — send me a message. I'd love to show you what's possible. This is just the beginning.'",
-   cta:"If anything from these 30 days resonated — or you're curious about SHIFT — send me a message. This isn't the end. It's day one of everything.",
-   life:"Celebrate. Post. Reach out to everyone who engaged over 30 days. Thank them personally. Plant seeds for every conversation that comes next."
-  }
-];
+// Day 5 - Event Day
+NICHES.forEach(function(n){
+  PLANS["5-"+n]=post(1,"Event Day — First Coffee or Zoom",false,true,
+    hook("I just had the most unexpected conversation over coffee. SHIFT came up and everything changed…",false,true)+
+    hook("Day 5. I invited someone I care about to a Zoom today. Not to pitch anything — just to share what I've been building. Here's what happened…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a warm, genuine caption documenting a real first coffee date or Zoom call where the person shared their SHIFT journey with someone they care about. Not a pitch — a human moment. For someone in "+n+". The conversation, the reaction, the energy in the room. Ends with an invitation for others to reach out.","5a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("If you're curious what I showed them — send me a message. I'll set up a coffee or Zoom with you too.")+
+    life("This is your first real event. Invite 3 people this week — one coffee, one Zoom, one dinner. Not to sell. To share. Document every single one. This content outlasts everything else you post.")
+  );
+});
 
-w4.forEach(function(d){
-  NICHES.forEach(function(n){
-    PLANS[d.day+"-"+n]=pl(
-      d.h1,d.h2,
-      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
-      d.cta,d.life
+// Day 6 - Building in Public #2
+NICHES.forEach(function(n){
+  PLANS["6-"+n]=post(1,"Building in Public #2 — The Daily Reality",false,false,
+    series()+
+    hook("Day 6. Building in Public. Here's what SHIFT actually created for me today — including the prompt, the output, and what I thought of it…",false,false)+
+    hook("This is what 20 minutes with SHIFT looks like in real life. No filters. No polish. Just the actual process…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a raw, honest behind-the-scenes caption for someone in "+n+" sharing exactly what they created in SHIFT today — the prompt they used, what came out, what surprised them, and what they'd do differently. Short. Real. No performance.","6a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("What would you use SHIFT to create today if you had 20 minutes? Tell me — I'll show you the exact prompt.")+
+    life("Post a real screenshot or screen recording of SHIFT Chat in action. The less polished, the more authentic. Authenticity is the algorithm.")
+  );
+});
+
+// Day 7 - Week 1 Finale Double
+NICHES.forEach(function(n){
+  PLANS["7-"+n]=
+    post(1,"Post 1 — Week 1 Honest Recap",false,false,
+      hook("One week in. Here's the honest truth about how it actually went…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write an honest, energized Week 1 recap caption for someone in "+n+" doing a 30-day SHIFT challenge. Share what they created with SHIFT Chat and Image, who they connected with, what surprised them, and what they got wrong. Real, not polished. Ends with a cliffhanger for Week 2.","7a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What's been your favourite post this week? Tell me — it literally shapes what I create next.")
+    )+
+    post(2,"Post 2 — The Week 2 Tease",true,false,
+      hook("Week 2 starts tomorrow and it's going to be different. Here's what I'm planning…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a short, punchy teaser caption for someone in "+n+" building excitement for Week 2 of their SHIFT challenge. Hint at teaching, real events, and going deeper without giving everything away. Creates genuine anticipation.","7b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Follow now if you haven't — Week 2 is when things get real.")+
+      life("Stories today: share your best 3 moments from Week 1. Real reactions, SHIFT creations, your event. Let people feel what's been built in 7 days.")
     );
-  });
 });
 
-function copyText(txt){
+// ── WEEK 2 ────────────────────────────────────────────────────────────────
+
+// Day 8
+NICHES.forEach(function(n){
+  PLANS["8-"+n]=post(1,"Bold Opinion — The Honest Take",false,false,
+    hook("I'm going to say something about "+n+" that most people are too polished to admit publicly…",false,false)+
+    hook("Unpopular opinion. Day 8 and I'm done playing it safe. Here's what I actually think…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a bold, respectful 60-second talking head script sharing an honest opinion about "+n+" that most people won't say out loud. Backed by real experience. Not inflammatory — genuinely useful and slightly uncomfortable. Created with SHIFT Chat. Ends with an open invitation for real discussion.","8a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Agree or disagree? I want the real conversation — not the polished version.")+
+    life("After this post, reply to every single comment personally. This is the post that starts relationships.")
+  );
+});
+
+// Day 9 - Double
+NICHES.forEach(function(n){
+  PLANS["9-"+n]=
+    post(1,"Post 1 — Teach Something Real",false,false,
+      hook("If you're starting out in "+n+", here is the one concept nobody teaches early enough…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a clear, valuable educational caption teaching the single most important foundational concept in "+n+" to someone just starting out. Written using SHIFT Chat. No jargon. Genuinely useful. Ends with: 'Save this. Share it with someone who needs it.'","9a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Save this and send it to someone in "+n+" who needs it. The thing nobody told you early enough.")
+    )+
+    post(2,"Post 2 — Show SHIFT Writing It",true,false,
+      hook("Here's the exact SHIFT prompt I used to write that post. Watch this…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a short, curious caption for someone in "+n+" revealing the exact SHIFT Chat prompt they used to create their educational post — including a screenshot of the process. Makes people feel like they're seeing something they shouldn't be seeing. Ends with a question about what they'd create.","9b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What would you teach your audience if content creation wasn't the barrier?")+
+      life("Show the SHIFT Chat conversation in your Stories. Add a swipe-up or link to SHIFT. Let the tool sell itself.")
+    );
+});
+
+// Day 10 - Event Day
+NICHES.forEach(function(n){
+  PLANS["10-"+n]=post(1,"Event Day — First SHIFT Zoom",false,true,
+    hook("I just hosted my first SHIFT Zoom. I didn't know what to expect. Here's exactly what happened…",false,true)+
+    hook("Day 10. I invited people who've been following along to get on a Zoom with me. Real people, real questions, real conversation. Here's what we covered…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write an exciting, warm recap caption for someone in "+n+" who just hosted their first SHIFT Zoom call with followers and connections. Share the energy, what was shown (SHIFT Chat, Image, ROI calculator), what questions came up, and the reactions. Ends with an open invitation for the next one.","10a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Want to get on the next Zoom? Send me a message with 'ZOOM' and I'll send you the details.")+
+    life("Host this Zoom this week. Show your screen. Walk through SHIFT Chat and Image live. Show the ROI calculator. Don't pitch — just show. Let people ask questions. This is the most powerful thing you can do in Week 2.")
+  );
+});
+
+// Day 11 - Building in Public #3
+NICHES.forEach(function(n){
+  PLANS["11-"+n]=post(1,"Building in Public #3 — Live Creation",false,false,
+    series()+
+    hook("3 mistakes people make in "+n+" — watch me write this whole post using SHIFT Chat in real time…",false,false)+
+    hook("Day 11. Building in Public. I'm going to type a prompt into SHIFT and share exactly what comes out. No edits. Watch…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a direct, practical 60-second talking head script for someone in "+n+" covering 3 common mistakes — each one named clearly and fixed in plain language. Written live using SHIFT Chat. Show the prompt used and the result. Ends by asking which mistake they've made.","11a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Which one hit you? Comment 1, 2, or 3. We've all been there — no judgment.")+
+    life("Film yourself actually using SHIFT Chat to generate this. Then film yourself reacting to the output. Post both. The reaction is the content.")
+  );
+});
+
+// Day 12 - Vault Drop
+NICHES.forEach(function(n){
+  PLANS["12-"+n]=post(1,"Vault Drop — Share the Gold",false,false,
+    hook("There's content inside SHIFT that most people haven't found yet. This stopped me completely…",false,false)+
+    hook("Day 12. I went into the SHIFT Vault today and found something I had to share with you. Here it is…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write an engaging, generous caption for someone in "+n+" resharing a powerful piece of content from the SHIFT Vault. Add their personal reaction — why it stopped them, what it made them think, and why their audience in "+n+" specifically needs to see it. Authentic, not promotional.","12a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Have you found the SHIFT Vault yet? Send me a message and I'll show you exactly where to start.")+
+    life("Restamp directly from the Vault. Add your own voice to it. This is one of the most underused and highest-value moves in the entire SHIFT platform.")
+  );
+});
+
+// Day 13 - Double + Event
+NICHES.forEach(function(n){
+  PLANS["13-"+n]=
+    post(1,"Post 1 — The Real Life Moment",false,true,
+      hook("Something happened this week that reminded me this is about so much more than content…",false,true)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a warm, human caption about a real connection moment this week — coffee, dinner, hike, or Zoom — where building with SHIFT became real for someone in "+n+". Not a pitch. A genuine human moment that shows this journey is about people, not just posts.","13a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Who are you building alongside right now? Tag them or tell me about them.")
+    )+
+    post(2,"Post 2 — ROI Calculator Reveal",true,false,
+      hook("I ran the SHIFT ROI calculator today. The numbers made me sit back in my chair…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a curious, honest caption for someone in "+n+" sharing their experience running the SHIFT ROI calculator for the first time. What it showed, what it made them feel, and why they think more people in "+n+" need to see it. Ends with an invitation to ask about it.","13b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Want to see what the SHIFT ROI calculator shows for your situation? Send me a message — I'll walk you through it.")+
+      life("Show the ROI calculator on your next Zoom or coffee date. Don't explain it — just show it. Let the numbers do the talking.")
+    );
+});
+
+// Day 14 - Week 2 Recap
+NICHES.forEach(function(n){
+  PLANS["14-"+n]=post(1,"Week 2 Recap — What Got Real",false,false,
+    hook("Two weeks in. Here's what I built, who I connected with, and what SHIFT made possible…",false,false)+
+    hook("Day 14. The honest Week 2 update — the Zooms, the coffees, the content, and the thing I didn't expect…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a genuine, energized Week 2 recap caption for someone in "+n+" doing a 30-day SHIFT challenge. Mention real content created, real events hosted (Zoom, coffee), real reactions from people. Show momentum. Ends with genuine excitement for Week 3 and something that makes people not want to miss it.","14a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("If you've been watching — what's landed most for you? Tell me. It shapes everything I do next.")+
+    life("Week 2 Stories: show screenshots of your SHIFT Chat, your Zoom or coffee moment, your Vault share, and your best engagement. Let people feel the compound effect of 14 days.")
+  );
+});
+
+// ── WEEK 3 ────────────────────────────────────────────────────────────────
+
+// Day 15 - Building in Public #4
+NICHES.forEach(function(n){
+  PLANS["15-"+n]=post(1,"Building in Public #4 — The Insider Take",false,false,
+    series()+
+    hook("Most people in "+n+" don't realize this — and by the time they do, the window has already moved…",false,false)+
+    hook("Day 15. Building in Public. I typed 'most people don't realize' into SHIFT Chat and what came back genuinely surprised me…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write an eye-opening 60-second talking head script for someone in "+n+" starting with 'Most people don't realize...' — specific, insight-driven, and creates the feeling of insider knowledge. Show the SHIFT Chat prompt that created this. Ends by inviting people to share what THEY think most people are missing.","15a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("What do YOU think most people in "+n+" are completely missing right now?")+
+    life("After this post: personally reach out to the 10 most engaged people from Weeks 1 and 2. No pitch. Just: 'Hey — saw you've been following along. Wanted to say thank you personally.'")
+  );
+});
+
+// Day 16 - Double
+NICHES.forEach(function(n){
+  PLANS["16-"+n]=
+    post(1,"Post 1 — Vision Image",false,false,
+      hook("I created my 3-year vision in SHIFT today. When I saw the image, something clicked that I can't fully explain…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Create a breathtaking, specific aspirational image representing the ultimate 3-year vision for someone in "+n+" — freedom, meaningful work, strong community, financial independence, and time to truly live. The kind of image that gives someone goosebumps when they see it.","16a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What's your 3-year vision? Describe it in one sentence. I want to read every one.")
+    )+
+    post(2,"Post 2 — The Reality Behind the Vision",true,false,
+      hook("That image I just shared? Here's what my actual Tuesday looks like on the way there…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a funny, honest, grounding caption for someone in "+n+" sharing the contrast between their aspirational SHIFT vision image and the messy reality of actually building toward it right now. Real, self-deprecating, and ultimately motivating. Makes people feel seen.","16b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Tell me: what does your Tuesday actually look like? Drop the real version.")+
+      life("Post 1 in the morning. Post 2 in the evening. The contrast between the two is the content. People love the behind-the-beauty truth.")
+    );
+});
+
+// Day 17 - Event Day
+NICHES.forEach(function(n){
+  PLANS["17-"+n]=post(1,"Event Day — Dinner, Hike or Meetup",false,true,
+    hook("Last night I had a dinner with people I met through this journey. I have to tell you what happened…",false,true)+
+    hook("Day 17. We went for a hike. Just a few people from the SHIFT community. No agenda — just connection. Here's what it turned into…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a warm, vivid caption documenting a real-life social event — dinner, hike, or meetup — with people connected through SHIFT in the "+n+" space. Show what happens when the online becomes real. What was said, what was felt, and why this kind of human connection is the actual product.","17a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("If you want to be at the next one — send me a message. We're building something real.")+
+    life("This is the most powerful content of Week 3. A photo from a real meal, a scenic hike shot, a candid moment of laughter — these posts stop scrolls and start conversations. Plan this event this week.")
+  );
+});
+
+// Day 18 - Double: Vault + Opinion
+NICHES.forEach(function(n){
+  PLANS["18-"+n]=
+    post(1,"Post 1 — Vault Drop",false,false,
+      hook("Something in the SHIFT Vault hit differently today. I couldn't not share this…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a compelling caption for resharing something meaningful from the SHIFT Vault to a "+n+" audience. Personal reaction, why it resonated, and why now is the right time to share it. Generous and authentic.","18a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Explore the SHIFT Vault — there's content in there most people haven't found yet.")
+    )+
+    post(2,"Post 2 — Challenge a Belief",true,false,
+      hook("Everyone in "+n+" says you should do this. I'm going to respectfully push back on that…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a thought-provoking caption challenging a widely-held belief in "+n+". Respectful but genuinely bold. Backed by real experience. Written with SHIFT Chat. Ends by inviting honest disagreement.","18b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Do you agree or disagree? Both sides welcome — I want the real conversation.")+
+      life("Two posts today creates twice the touchpoints. The Vault share is generous. The bold opinion is engaging. Together they show two sides of who you are.")
+    );
+});
+
+// Day 19 - Building in Public #5
+NICHES.forEach(function(n){
+  PLANS["19-"+n]=post(1,"Building in Public #5 — The Opportunity",false,false,
+    series()+
+    hook("The early adopter window is real. I wrote this post in SHIFT and I need you to hear it…",false,false)+
+    hook("Day 19. Building in Public. I asked SHIFT to help me explain why I believe the timing matters. Here's what it wrote — and why I think it's right…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a grounded, compelling 60-second script about the early adopter opportunity with SHIFT for someone in "+n+". Not hype — genuine perspective from someone 19 days in. What they see, why the timing matters, and a real invitation to take a closer look. Show that this was written using SHIFT Chat.","19a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Are you someone who moves early or waits for proof? No wrong answer — tell me honestly.")+
+    life("After this post: run the ROI calculator with 3 people this week. Show it over coffee, on a Zoom, or share a screenshot. Let the numbers start conversations.")
+  );
+});
+
+// Day 20 - Event Day: Zoom
+NICHES.forEach(function(n){
+  PLANS["20-"+n]=post(1,"Event Day — The Community Zoom",false,true,
+    hook("I hosted a Zoom tonight for everyone who's been following this 30-day journey. I wasn't ready for what happened…",false,true)+
+    hook("Day 20. I invited my most engaged followers onto a Zoom. Real people, real questions, and a live SHIFT walkthrough. Here's the recap…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write an excited, warm recap caption for someone in "+n+" who just hosted a community Zoom — walked people through SHIFT Chat, Image, and the ROI calculator live. Share the energy, the questions, the reactions, and why this kind of gathering is what SHIFT is really about.","20a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Want to get on the next one? Comment 'ZOOM' below or send me a message — you're welcome.")+
+    life("Host this Zoom this week. Invite everyone who's engaged with your content over 20 days. Walk them through SHIFT live. Answer questions. Don't pitch — show. The experience sells itself.")
+  );
+});
+
+// Day 21 - Week 3 Milestone Double
+NICHES.forEach(function(n){
+  PLANS["21-"+n]=
+    post(1,"Post 1 — The 21-Day Truth",false,false,
+      hook("21 days in. Here's the honest scorecard — the content, the events, the connections, and what no one tells you about building in public…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a powerful, honest Week 3 milestone recap for someone in "+n+" doing a 30-day SHIFT challenge. Highlight real content created, events hosted (Zooms, coffees, dinners), connections made, and moments that surprised them. Show the compound effect of 21 days. Ends with genuine anticipation for the final week.","21a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What's been your favourite moment from these 21 days? I'd genuinely love to know.")
+    )+
+    post(2,"Post 2 — The Invitation",true,false,
+      hook("Something is building here and I want you to be part of it. Week 4 starts tomorrow…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a warm, magnetic caption inviting people who've been watching the 30-day SHIFT journey in "+n+" to get more involved in Week 4 — Zooms, coffees, or just a conversation. No pressure. Just a genuine open door.","21b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Week 4 starts tomorrow. If you've been watching and thinking about it — now is the time. Send me a message.")+
+      life("Stories today: 21-day montage. Best SHIFT creations, event photos, Zoom moments, real reactions. Make it feel like a movement — because it is.")
+    );
+});
+
+// ── WEEK 4 ────────────────────────────────────────────────────────────────
+
+// Day 22 - Building in Public #6
+NICHES.forEach(function(n){
+  PLANS["22-"+n]=post(1,"Building in Public #6 — Early Adopters Win",false,false,
+    series()+
+    hook("Early adopters don't wait for permission. They move when they see the signal. Here's what the signal looks like right now…",false,false)+
+    hook("Day 22. Building in Public. I asked SHIFT to help me explain the early adopter advantage. What it wrote back is something I want everyone to hear…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a compelling, grounded 60-second script about why being an early adopter with SHIFT matters for someone in "+n+". Not hype — real perspective from 22 days inside the platform. What they've seen, who they've met, what's being built. Show this was created with SHIFT Chat. Ends with a quiet but powerful invitation.","22a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Are you an early mover or do you wait for proof? Tell me — and tell me why.")+
+    life("This week: personally reach out to every single person who's commented on your posts over 30 days. Not to pitch. Just to say thank you and start a real conversation.")
+  );
+});
+
+// Day 23 - Double
+NICHES.forEach(function(n){
+  PLANS["23-"+n]=
+    post(1,"Post 1 — The 3-Year Vision",false,false,
+      hook("Day 23. I created my full 3-year vision in SHIFT today. This image is everything I'm working toward…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Create a powerful, specific future vision image for someone in "+n+" building with SHIFT — financial freedom, meaningful community, time to live fully, and work that feels like purpose. The kind of image that makes someone say 'I want that life.'","23a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What does your version of this life look like? Describe it. I read every single reply.")
+    )+
+    post(2,"Post 2 — What the Daily Reality Looks Like",true,false,
+      hook("And here's what Tuesday actually looks like on the way to that vision. Real talk…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write an honest, funny, grounding caption for someone in "+n+" showing the contrast between their bold 3-year SHIFT vision and what their current daily reality actually looks like — the coffee, the small wins, the learning curve, the unexpected joy. Real and relatable.","23b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("What does YOUR daily reality look like right now? Tell me the real version.")+
+      life("Vision in the morning. Reality in the evening. The contrast is what makes people fall in love with your authenticity.")
+    );
+});
+
+// Day 24 - Event Day
+NICHES.forEach(function(n){
+  PLANS["24-"+n]=post(1,"Event Day — The Real Gathering",false,true,
+    hook("We had dinner last night. People who connected through SHIFT. And I've been thinking about it ever since…",false,true)+
+    hook("Day 24. A hike. A meal. A group of people who found each other through 30 days of showing up. Here's what actually happened…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a vivid, warm caption about a real social gathering — dinner, hike, or outdoor meetup — with people connected through the SHIFT journey in "+n+". Capture the feeling of the room, a specific moment of real conversation, and why this kind of human connection is what all of this is actually for.","24a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("If you want to be at the next one — send me a message. The best part of this journey has been the people.")+
+    life("Plan this event this week. Even 3 people at a dinner table is a movement. Document it. Film the energy. This content will bring more people in than any caption you ever write.")
+  );
+});
+
+// Day 25 - Honest Review
+NICHES.forEach(function(n){
+  PLANS["25-"+n]=post(1,"Honest Review — 25 Days With SHIFT",false,false,
+    hook("25 days using SHIFT. My honest, unfiltered review — everything I've created, everyone I've met, and what I actually think…",false,false)+
+    hook("Day 25. I'm going to tell you everything about SHIFT. The good, the great, and what surprised me most. Nothing held back…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write an authentic, personal review of using SHIFT for 25 days for someone in "+n+". Cover SHIFT Chat and Image specifically — what they've created, what surprised them, what the community feels like, and who they'd genuinely recommend it to. Sounds like a trusted friend talking, not an ad. Warm and completely honest.","25a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Want the real story — not the sales page version? Send me a message. Happy to share everything.")+
+    life("Send this post to 10 people personally. Not as a pitch. Just: 'Made this today — thought of you.'")
+  );
+});
+
+// Day 26 - Double
+NICHES.forEach(function(n){
+  PLANS["26-"+n]=
+    post(1,"Post 1 — What SHIFT Actually Is",false,false,
+      hook("People keep asking me what SHIFT actually is. Here's the clearest, most honest answer I can give…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a clear, simple 60-second explanation of what SHIFT is for someone in "+n+" who has never heard of it. Cover: what it is, what it does (Chat, Image, Vault, ROI calculator), who it's for, and how to find out more. Zero jargon. Zero hype. Sounds like a trusted friend explaining something they genuinely love.","26a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Questions about SHIFT? Drop them below or send me a message — I'll answer everything honestly.")
+    )+
+    post(2,"Post 2 — Who It's Really For",true,false,
+      hook("SHIFT isn't for everyone. But if you're someone who [this] — it might be exactly what you've been looking for…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a specific, honest caption describing exactly who SHIFT is the perfect fit for — the mindset, the situation, the goals. Written for someone in "+n+". Not a broad sales pitch — a genuine description that makes the right people feel seen and understood.","26b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("Does this sound like you? Send me a message — let's have a real conversation.")+
+      life("These two posts together answer the two most common questions: 'What is it?' and 'Is it for me?' Post them the same day for maximum impact.")
+    );
+});
+
+// Day 27 - Vault Drop
+NICHES.forEach(function(n){
+  PLANS["27-"+n]=post(1,"Vault Drop — The One That Moved You",false,false,
+    hook("This piece of SHIFT Vault content hit me in a way I wasn't expecting. I've been sitting with it for two days…",false,false)+
+    hook("Day 27. Something from the SHIFT Vault that belongs in front of more people. I'm sharing it today with everything I feel about it…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a meaningful, generous caption for resharing a powerful piece of content from the SHIFT Vault to a "+n+" audience. Add a deeply personal reaction — what it brought up, why it matters right now, and why this person's specific audience in "+n+" needs to see it. Ends with a soft, open invitation.","27a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Have you found the SHIFT Vault yet? It changed how I see what's possible. Send me a message — I'll show you where to start.")+
+    life("Restamp this. Add your voice. Share it everywhere. This is the content that starts the conversations you can't plan.")
+  );
+});
+
+// Day 28 - Event Day: Final Zoom
+NICHES.forEach(function(n){
+  PLANS["28-"+n]=post(1,"Event Day — The Final Zoom",false,true,
+    hook("I just hosted the biggest Zoom of this 30-day journey. Everyone who's been watching was invited. Here's what happened…",false,true)+
+    hook("Day 28. Final community Zoom. Real people, real questions, a live walkthrough of everything SHIFT has to offer. This was something else…",false,true)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a powerful, grateful recap caption for someone in "+n+" who just hosted their final community Zoom of their 30-day SHIFT challenge. Share what was shown live, the questions that came up, the energy in the virtual room, and why this kind of gathering is what SHIFT is really building. Ends with a warm, open invitation for Day 30.","28a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Day 30 is in two days. If you've been watching and haven't reached out yet — now is the time. Send me a message.")+
+    life("This Zoom is your most important event. Invite everyone. Walk through SHIFT Chat, Image, Vault, and ROI calculator. Let people ask anything. Record it if you can. The replay becomes content.")
+  );
+});
+
+// Day 29 - Building in Public #7
+NICHES.forEach(function(n){
+  PLANS["29-"+n]=post(1,"Building in Public #7 — The Soft Invite",false,false,
+    series()+
+    hook("Day 29. One day left. And I want to say something to anyone who's been watching but hasn't made a move yet…",false,false)+
+    hook("No pitch. No pressure. Just the honest truth from someone who's been inside SHIFT for 29 days and wants to share what they found…",false,false)+
+    '<div class="sec-label">SHIFT Prompt</div>'+
+    prompt("Write a warm, human 60-second talking head script for someone in "+n+" making a genuine, zero-pressure invitation to learn more about SHIFT. Share what 29 days gave them — the content, the community, the events, the clarity — and end simply with: 'If you're curious — send me a message. I'll tell you everything. No pressure at all.' Show this was written with SHIFT Chat.","29a-"+n)+
+    '<div class="sec-label">Your CTA</div>'+
+    cta("Curious about SHIFT? Send me a message. No pitch, no pressure — just an honest conversation between two people.")+
+    life("Make your list. Everyone who's commented, messaged, or attended a Zoom over 30 days. Tomorrow, after Day 30 goes live, follow up with every single one personally.")
+  );
+});
+
+// Day 30 - Finale Double
+NICHES.forEach(function(n){
+  PLANS["30-"+n]=
+    post(1,"Post 1 — The Day 30 Celebration",false,false,
+      hook("Day 30. Thirty days. Thirty posts. Real events. Real connections. Real content. Here's everything I built — and everything I became…",false,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a powerful, celebratory 30-day finale script for someone in "+n+". Cover what they built with SHIFT Chat and Image, the events they hosted (Zooms, coffees, dinners, hikes), the connections they made, the moments they didn't expect. Be deeply grateful and genuinely excited. This is the most important piece of content in the entire 30 days.","30a-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("If anything from these 30 days moved you — send me a message. This isn't the end. It's Day 1 of everything.")
+    )+
+    post(2,"Post 2 — The Open Door",true,false,
+      hook("And now — a genuine invitation. Not a pitch. An open door for anyone who's ready…",true,false)+
+      '<div class="sec-label">SHIFT Prompt</div>'+
+      prompt("Write a warm, powerful final invitation caption for someone who has just completed 30 days of building with SHIFT in "+n+". Invite people who are ready into the next chapter — with no pressure, no hype, just real conviction from someone who's lived it. End with: 'The door is open. Send me a message whenever you're ready.'","30b-"+n)+
+      '<div class="sec-label">Your CTA</div>'+
+      cta("The door is open. Send me a message whenever you're ready. I'll be here.")+
+      life("Day 30 is not the end — it's the beginning of every conversation you've been planting. Celebrate publicly. Follow up privately. The 30 days was the runway. Now you take off.")
+    );
+});
+
+function copyText(txt,btn){
   navigator.clipboard.writeText(txt).then(function(){
-    var btn=document.getElementById("copybtn");
-    if(btn){btn.textContent="Copied!";setTimeout(function(){btn.textContent="Copy prompt";},2000);}
+    btn.textContent="Copied!";
+    setTimeout(function(){btn.textContent="Copy prompt";},2000);
   });
 }
 
@@ -465,7 +658,7 @@ function render(){
 
   h+='<div class="hdr"><div class="hdr-eye">30-Day Activation Protocol</div>';
   h+='<div class="hdr-title">SHIFT Content Planner</div>';
-  h+='<div class="hdr-sub">Pick a week · pick a day · pick your niche · done</div></div>';
+  h+='<div class="hdr-sub">Pick a week · pick a day · pick your niche · create</div></div>';
 
   h+='<div class="wnav">';
   for(var i=0;i<WEEKS.length;i++){
@@ -473,15 +666,27 @@ function render(){
     h+='<span class="wtab-num">'+WEEKS[i].label+"</span><span>"+WEEKS[i].theme+"</span></button>";
   }
   h+="</div>";
+  h+='<div class="wintro"><div class="wtheme">'+w.theme+'</div><div class="wdesc">'+w.goal+'</div></div>';
 
-  h+='<div class="wintro">';
-  h+='<div class="wfocus">'+w.theme+'</div>';
-  h+='<div class="wdesc">'+w.goal+'</div></div>';
+  h+='<div class="legend">';
+  h+='<div class="leg"><div class="leg-dot" style="background:#c9a84c"></div>Standard</div>';
+  h+='<div class="leg"><div class="leg-dot" style="background:#a855f7"></div>Double post day</div>';
+  h+='<div class="leg"><div class="leg-dot" style="background:#4ade80"></div>Real life event</div>';
+  h+='<div class="leg"><div class="leg-dot" style="background:#c9a84c;opacity:.5"></div>Series</div>';
+  h+="</div>";
 
   h+='<div class="dgrid">';
   for(var j=0;j<w.days.length;j++){
     var day=w.days[j];
-    h+='<div class="dcard'+(S.day===day.day?" on":"")+'" data-day="'+day.day+'">';
+    var flags=day.flags||[];
+    var isDouble=flags.indexOf("double")>=0;
+    var isEvent=flags.indexOf("event")>=0;
+    var isSeries=flags.indexOf("series")>=0;
+    var cls="dcard"+(S.day===day.day?" on":"")+(isDouble?" double":"")+(isEvent?" event":"");
+    h+='<div class="'+cls+'" data-day="'+day.day+'">';
+    if(isDouble) h+='<div class="dpill double">2 posts</div>';
+    else if(isEvent) h+='<div class="dpill event">Event</div>';
+    else if(isSeries) h+='<div class="dpill series">Series</div>';
     h+='<div class="dnum">'+day.day+"</div>";
     h+='<div class="dtype">'+day.type+"</div>";
     h+='<div class="dtopic">'+day.topic+"</div></div>";
@@ -498,27 +703,10 @@ function render(){
       h+='<span class="chip'+(NICHES[n]===S.niche?" on":"")+'" data-niche="'+NICHES[n]+'">'+NICHES[n]+"</span>";
     }
     h+="</div></div>";
-    h+='<div class="out">';
-    if(plan){
-      h+='<div class="section"><div class="sec-label">Your Hook — pick one to open with</div>';
-      h+='<div class="hook-box">'+plan[0]+'</div>';
-      h+='<div class="hook-box">'+plan[1]+'</div></div>';
-      h+='<div class="section"><div class="sec-label">SHIFT Prompt — paste this into SHIFT Chat or Image</div>';
-      h+='<div class="prompt-box" id="prompttext">'+plan[2]+'</div>';
-      h+='<button class="copy-btn" id="copybtn">Copy prompt</button></div>';
-      h+='<div class="section"><div class="sec-label">Your CTA — how to end your post</div>';
-      h+='<div class="cta-box">'+plan[3]+'</div></div>';
-      if(plan[4]){
-        h+='<div class="section"><div class="sec-label">Real Life Action — do this today</div>';
-        h+='<div class="life-box">'+plan[4]+'</div></div>';
-      }
-    } else {
-      h+='<div class="section"><p style="color:#7a7570;font-size:13px;">Select your niche above to see your Day '+d.day+' plan.</p></div>';
-    }
-    h+="</div></div>";
+    h+='<div class="out">'+(plan||'<p style="color:#7a7570;font-size:13px;">Select your niche above.</p>')+"</div></div>";
   }
 
-  h+='<div class="banner"><p><strong>The SHIFT Rule:</strong> Don\'t sell SHIFT — become SHIFT. Use it every day. Share what it creates. Invite people into your journey. The content is the proof.</p></div>';
+  h+='<div class="banner"><p><strong>The SHIFT Rule:</strong> Don\'t sell SHIFT — become SHIFT. Use it every day. Host real events. Build real friendships. The content is proof. The people are the product.</p></div>';
 
   document.getElementById("root").innerHTML=h;
 
@@ -531,10 +719,13 @@ function render(){
   document.querySelectorAll(".chip").forEach(function(el){
     el.addEventListener("click",function(){S.niche=this.dataset.niche;render();});
   });
-  var cb=document.getElementById("copybtn");
-  if(cb&&plan){
-    cb.addEventListener("click",function(){copyText(plan[2]);});
-  }
+  document.querySelectorAll(".copy-btn").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var pid=this.getAttribute("data-pid");
+      var el=document.getElementById("prompt-"+pid);
+      if(el) copyText(el.textContent,this);
+    });
+  });
 }
 render();
 </script>
