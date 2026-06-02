@@ -8,23 +8,19 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: #0d0d0f; color: #e8e6e0; min-height: 100vh; }
-
   .hdr { background: #0a0a0c; border-bottom: 1px solid #2a2520; padding: 1.4rem 1.5rem; }
   .hdr-eye { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #c9a84c; margin-bottom: 5px; }
   .hdr-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; background: linear-gradient(90deg, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
   .hdr-sub { font-size: 11px; color: #6b6560; margin-top: 3px; }
-
   .wnav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 1rem 1.5rem; background: #0f0f12; border-bottom: 1px solid #2a2520; }
   .wtab { padding: .65rem .9rem; font-size: 12px; font-weight: 500; cursor: pointer; border-radius: 8px; border: 1px solid #2a2520; background: #161618; color: #7a7570; text-align: left; transition: all .15s; line-height: 1.3; font-family: 'DM Sans', sans-serif; }
   .wtab:hover { border-color: #c9a84c; color: #e8e6e0; }
   .wtab.on { background: #1a1408; color: #c9a84c; border-color: #c9a84c; }
   .wtab-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .6; display: block; margin-bottom: 1px; }
   .wtab.on .wtab-num { opacity: .8; }
-
   .wintro { display: flex; align-items: center; gap: 8px; padding: .75rem 1.5rem; background: #0f0f12; border-bottom: 1px solid #2a2520; }
   .gbadge { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: #1a1408; color: #c9a84c; border: 1px solid #c9a84c; white-space: nowrap; }
   .gtext { font-size: 12px; color: #7a7570; }
-
   .dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 7px; padding: 1rem 1.5rem; }
   .dcard { background: #161618; border: 1px solid #2a2520; border-radius: 8px; padding: .7rem .8rem; cursor: pointer; transition: all .15s; }
   .dcard:hover { border-color: #c9a84c; }
@@ -33,36 +29,32 @@
   .dcard.on .dnum { color: #c9a84c; }
   .dtype { font-size: 9.5px; font-weight: 500; color: #5a5550; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
   .dtopic { font-size: 11px; color: #7a7570; line-height: 1.35; }
-
   .panel { margin: 0 1.5rem 1rem; border: 1px solid #2a2520; border-radius: 12px; overflow: hidden; background: #161618; }
   .phdr { padding: .9rem 1.1rem; border-bottom: 1px solid #2a2520; display: flex; align-items: flex-start; gap: 9px; flex-wrap: wrap; }
   .dbadge { background: #1a1408; color: #c9a84c; border: 1px solid #c9a84c; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; margin-top: 2px; }
   .pinfo { flex: 1; min-width: 0; }
   .ptitle { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 1px; color: #e8e6e0; }
   .pmeta { font-size: 11px; color: #7a7570; }
-
   .nrow { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; padding: .65rem 1.1rem; border-bottom: 1px solid #2a2520; }
   .nlbl { font-size: 11px; color: #7a7570; white-space: nowrap; }
   .chips { display: flex; gap: 5px; flex-wrap: wrap; }
   .chip { font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 1px solid #2a2520; cursor: pointer; background: #0f0f12; color: #7a7570; transition: all .1s; }
   .chip:hover { border-color: #c9a84c; color: #c9a84c; }
   .chip.on { background: #1a1408; color: #c9a84c; border-color: #c9a84c; }
-
-  .out { padding: 1.1rem; }
-  .plan { font-size: 13px; line-height: 1.8; color: #d4d0c8; }
-  .plan h3 { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #5a5550; margin: 1rem 0 .35rem; padding-bottom: 3px; border-bottom: 1px solid #2a2520; }
-  .plan h3:first-child { margin-top: 0; }
-  .plan p { margin-bottom: .45rem; }
-  .plan ul { padding-left: 1.1rem; margin-bottom: .45rem; }
-  .plan li { margin-bottom: .25rem; }
-  .hbox { background: #0f0f12; border-left: 3px solid #c9a84c; padding: .5rem .85rem; font-style: italic; margin: .35rem 0; font-size: 13px; color: #d4d0c8; }
-  .pbox { background: #0a0a0c; border: 1px solid #2a2520; color: #a855f7; padding: .6rem .9rem; border-radius: 8px; font-family: monospace; font-size: 11.5px; margin: .35rem 0; line-height: 1.6; white-space: pre-wrap; }
-  .tbadge { display: inline-block; background: #1a1408; border: 1px solid #c9a84c; padding: 2px 8px; border-radius: 20px; font-size: 11px; color: #c9a84c; margin-bottom: .5rem; }
-
+  .out { padding: 1.25rem; }
+  .section { margin-bottom: 1.25rem; }
+  .section:last-child { margin-bottom: 0; }
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c9a84c; margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: #2a2520; }
+  .hook-box { background: #0f0f12; border-left: 3px solid #c9a84c; border-radius: 0 6px 6px 0; padding: .75rem 1rem; font-size: 14px; font-style: italic; color: #e8e6e0; line-height: 1.6; margin-bottom: .5rem; }
+  .hook-box:last-child { margin-bottom: 0; }
+  .prompt-box { background: #0a0a0c; border: 1px solid #2a2520; border-radius: 8px; padding: .85rem 1rem; font-family: monospace; font-size: 12px; color: #a855f7; line-height: 1.7; white-space: pre-wrap; }
+  .cta-box { background: #0f0f12; border: 1px solid #2a2520; border-radius: 8px; padding: .75rem 1rem; font-size: 13px; color: #e8e6e0; line-height: 1.6; }
+  .copy-btn { margin-top: .5rem; padding: .35rem .8rem; background: #1a1408; border: 1px solid #c9a84c; border-radius: 6px; color: #c9a84c; font-size: 11px; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; }
+  .copy-btn:hover { background: #c9a84c; color: #0a0a0c; }
   .banner { margin: 0 1.5rem 2rem; background: #0a0a0c; border: 1px solid #2a2520; border-radius: 8px; padding: .85rem 1.1rem; }
   .banner p { font-size: 12px; color: #5a5550; line-height: 1.55; }
   .banner strong { color: #c9a84c; }
-
   @media (max-width: 480px) {
     .wnav, .dgrid { padding: .75rem 1rem; }
     .panel, .banner { margin-left: 1rem; margin-right: 1rem; }
@@ -73,127 +65,412 @@
 <div id="root"></div>
 <script>
 var WEEKS=[
-  {num:1,label:"Week 1",theme:"I Just Started",goal:"Show curiosity and discovery",days:[
-    {day:1,type:"Talking Head",topic:"Introduce yourself + why you're starting the 30-Day SHIFT Challenge"},
-    {day:2,type:"Photo Post",topic:"1 career lesson that shaped you"},
-    {day:3,type:"AI Image",topic:"Use SHIFT to create an image of your future goals"},
-    {day:4,type:"Talking Head",topic:"A mistake that taught you an important lesson"},
-    {day:5,type:"Quote/Graphic",topic:"Motivational post for entrepreneurs using SHIFT"},
-    {day:6,type:"Talking Head",topic:"Personal branding — what you want to be known for"},
-    {day:7,type:"Reflection",topic:"Biggest takeaway from Week 1"}
+  {num:1,label:"Week 1",theme:"I Just Started",goal:"Announce your challenge. Show curiosity. Introduce SHIFT naturally.",days:[
+    {day:1,type:"Talking Head",topic:"Announce your 30-day SHIFT challenge"},
+    {day:2,type:"Photo Post",topic:"A lesson from your career that shaped you"},
+    {day:3,type:"AI Image",topic:"Your future goals — created with SHIFT"},
+    {day:4,type:"Talking Head",topic:"A mistake that taught you something important"},
+    {day:5,type:"Quote Graphic",topic:"Motivation for entrepreneurs — made in SHIFT"},
+    {day:6,type:"Talking Head",topic:"What you want to be known for"},
+    {day:7,type:"Reflection",topic:"Your biggest Week 1 takeaway"}
   ]},
-  {num:2,label:"Week 2",theme:"Build Authority",goal:"Become known for something in your niche",days:[
-    {day:8,type:"Talking Head",topic:"One unpopular opinion about your industry"},
-    {day:9,type:"Educational",topic:"Teach beginners one thing about your industry"},
-    {day:10,type:"AI Image",topic:"Create an image representing success in your niche"},
+  {num:2,label:"Week 2",theme:"Build Authority",goal:"Teach your niche. Show SHIFT creating your content.",days:[
+    {day:8,type:"Talking Head",topic:"An unpopular opinion in your industry"},
+    {day:9,type:"Educational",topic:"One thing beginners need to know"},
+    {day:10,type:"AI Image",topic:"What success looks like in your niche"},
     {day:11,type:"Talking Head",topic:"3 mistakes people make in your industry"},
-    {day:12,type:"Motivational",topic:"Discipline and consistency — why they matter"},
-    {day:13,type:"Carousel",topic:"5 myths about your industry debunked"},
-    {day:14,type:"Reflection",topic:"Weekly wins, lessons, and progress recap"}
+    {day:12,type:"Motivational",topic:"Why discipline beats motivation"},
+    {day:13,type:"Carousel",topic:"5 myths in your industry — busted"},
+    {day:14,type:"Reflection",topic:"Week 2 wins and lessons"}
   ]},
-  {num:3,label:"Week 3",theme:"Create Curiosity",goal:"Get people asking questions",days:[
-    {day:15,type:"Talking Head",topic:"Start with 'Most people don't realize…'"},
-    {day:16,type:"AI Image",topic:"Create an aspirational image — explain the vision"},
-    {day:17,type:"Talking Head",topic:"Tell a story about overcoming adversity"},
-    {day:18,type:"Text/Carousel",topic:"Challenge a common belief in your industry"},
-    {day:19,type:"Talking Head",topic:"A controversial but respectful opinion"},
-    {day:20,type:"Talking Head",topic:"Why you started using SHIFT + what you've learned"},
-    {day:21,type:"Recap Post",topic:"Wins, lessons, and growth from Week 3"}
+  {num:3,label:"Week 3",theme:"Create Curiosity",goal:"Make people ask: what are you using? How are you doing this?",days:[
+    {day:15,type:"Talking Head",topic:"Most people don't realize…"},
+    {day:16,type:"AI Image",topic:"Your aspirational vision — made with SHIFT"},
+    {day:17,type:"Talking Head",topic:"Overcoming a hard season"},
+    {day:18,type:"Carousel",topic:"Challenge a common belief in your niche"},
+    {day:19,type:"Talking Head",topic:"A bold opinion about your industry"},
+    {day:20,type:"Talking Head",topic:"What SHIFT has helped you create so far"},
+    {day:21,type:"Recap",topic:"Week 3 growth and wins"}
   ]},
-  {num:4,label:"Week 4",theme:"Invite People",goal:"Generate conversations — not sales pitches",days:[
-    {day:22,type:"Talking Head",topic:"Creating multiple income streams — mention SHIFT naturally"},
-    {day:23,type:"AI Image",topic:"My Future Vision — explain what you're building"},
-    {day:24,type:"Talking Head",topic:"Leverage and why AI matters for entrepreneurs"},
-    {day:25,type:"Lifestyle Photo",topic:"Time freedom — share your perspective"},
-    {day:26,type:"Talking Head",topic:"How AI is changing business"},
-    {day:27,type:"Talking Head",topic:"Your honest SHIFT experience so far"},
-    {day:28,type:"Educational",topic:"Opportunities most people are ignoring"},
-    {day:29,type:"Talking Head",topic:"Invite people to learn more — no pressure, no hype"},
-    {day:30,type:"Celebration",topic:"Full 30-day recap: what you learned, created, and what's next"}
+  {num:4,label:"Week 4",theme:"Invite People",goal:"Generate conversations. Make it easy for people to join SHIFT.",days:[
+    {day:22,type:"Talking Head",topic:"How AI is helping you build faster"},
+    {day:23,type:"AI Image",topic:"Your future vision — built with SHIFT"},
+    {day:24,type:"Talking Head",topic:"Why leverage and AI matter right now"},
+    {day:25,type:"Lifestyle",topic:"What time freedom means to you"},
+    {day:26,type:"Talking Head",topic:"What SHIFT actually does — simply explained"},
+    {day:27,type:"Talking Head",topic:"Your honest 27-day SHIFT experience"},
+    {day:28,type:"Educational",topic:"The opportunity most people are ignoring"},
+    {day:29,type:"Talking Head",topic:"A soft invite to learn more about SHIFT"},
+    {day:30,type:"Celebration",topic:"30-day finale — what you built and learned"}
   ]}
 ];
+
 var NICHES=["Business","Fitness","Wellness","Real Estate","Marketing","Personal Development","Lifestyle"];
 var S={week:0,day:null,niche:"Business"};
+
+// Each plan: [hook1, hook2, shiftPrompt, cta]
 var PLANS={};
+function pl(h1,h2,prompt,cta){ return [h1,h2,prompt,cta]; }
 
-function p(hooks,outline,prompt,story,cta,tips,time){
-  return '<span class="tbadge">&#9201; '+time+'</span>'
-    +'<h3>Hook options</h3>'+hooks.map(function(h){return '<div class="hbox">'+h+'</div>';}).join('')
-    +'<h3>Post outline</h3><ul>'+outline.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul>'
-    +'<h3>SHIFT prompt to use</h3><div class="pbox">'+prompt+'</div>'
-    +'<h3>Story content</h3><p>'+story+'</p>'
-    +'<h3>Engagement CTA</h3><p>'+cta+'</p>'
-    +'<h3>Authenticity tips</h3><p>'+tips+'</p>';
-}
+// ── WEEK 1 ───────────────────────────────────────────────────────────────
+PLANS["1-Business"]=pl(
+  "I just started a 30-day challenge to build my brand using AI — and I'm documenting all of it publicly. Here's why…",
+  "Day 1. I committed to showing up for 30 days straight using SHIFT to create every piece of content. Here's what I'm building and why…",
+  "Write a 60-second talking head script for a business entrepreneur announcing they are starting a 30-day challenge to build their brand using SHIFT, an AI content platform. Excited, real, not salesy. End with: 'Follow along — I'm showing everything.'",
+  "Comment 'IN' if you want to follow this journey. I'll be posting every single day."
+);
+PLANS["1-Fitness"]=pl(
+  "Day 1 of my 30-day SHIFT challenge — I'm using AI to build my fitness brand publicly. Here's the plan…",
+  "I just committed to 30 days of content using SHIFT. As a fitness coach this feels scary and exciting. Here's why I'm doing it…",
+  "Write a 60-second talking head script for a fitness coach announcing a 30-day public challenge to build their brand using SHIFT AI. Energetic, authentic, and personal. End with an invitation to follow along.",
+  "Drop a 🔥 if you're following this journey. Day 2 tomorrow."
+);
+PLANS["1-Wellness"]=pl(
+  "Starting something new today — 30 days of building my wellness brand using AI. Day 1 begins now…",
+  "I'm committing to 30 days of showing up publicly and using SHIFT to create all my content. Here's my why…",
+  "Write a warm, authentic 60-second script for a wellness coach starting a 30-day brand-building challenge using SHIFT. Calm, genuine, and inviting. End with a soft invitation to follow along.",
+  "Save this post if you want to follow my 30-day journey. New content every day."
+);
+PLANS["1-Real Estate"]=pl(
+  "Day 1: I'm doing a 30-day public challenge to build my real estate brand using AI. Here's what that looks like…",
+  "I just started a 30-day content challenge using SHIFT. I'm a real estate agent and I'm documenting everything. Here's why…",
+  "Write a confident, friendly 60-second script for a real estate agent announcing a 30-day brand-building challenge using SHIFT AI. Professional but personable. End with an invitation to follow along.",
+  "Following along? Drop a comment below. I post every single day."
+);
+PLANS["1-Marketing"]=pl(
+  "Day 1 of my 30-day SHIFT challenge — I'm building my marketing brand in public using AI. Watch this…",
+  "I'm a marketer who just started using SHIFT for all my content. 30 days, documented publicly. Here's why…",
+  "Write a bold 60-second talking head script for a marketing professional starting a 30-day public challenge using SHIFT AI. Sharp, confident, and self-aware. End with an invitation to follow.",
+  "Tag a marketer who needs to see what AI can actually do. Day 2 tomorrow."
+);
+PLANS["1-Personal Development"]=pl(
+  "Day 1 of 30 — I'm doing this publicly and I'm using AI to build as I go. Here's the honest truth about why…",
+  "I decided to stop waiting and start building. 30 days. SHIFT. Everything documented. Here's what I want to create…",
+  "Write a vulnerable, inspiring 60-second script for a personal development coach announcing a 30-day challenge to build their brand using SHIFT. Raw, real, and motivating. End with an invitation to follow the journey.",
+  "Comment 'DAY 1' if you're starting something new right now too. Let's go together."
+);
+PLANS["1-Lifestyle"]=pl(
+  "I'm going public for 30 days — using AI to build my brand one post at a time. Day 1 starts now…",
+  "30 days. Every day a new post. All created with SHIFT. Here's why I'm doing this and what you can expect…",
+  "Write a fun, personality-driven 60-second script for a lifestyle creator announcing a 30-day public challenge using SHIFT AI. Full of personality and excitement. End with a warm invitation to follow along.",
+  "Follow for the full 30 days — it's going to get interesting. Day 2 tomorrow."
+);
 
-PLANS["1-Business"]=p(["Day 1 of building my brand using AI — here's why I'm doing this publicly…","I just committed to 30 days of showing up online. Here's what I want to build…"],["Introduce yourself: name, what you do, who you help","Share the #1 reason you're starting this challenge now","What you hope to achieve in 30 days","One thing you want to be known for in your industry","End: 'Follow along — I'm documenting everything'"],"Write a 3-sentence bio for a business entrepreneur who helps [your audience] achieve [your result]. Keep it conversational, not corporate.","Screenshot your SHIFT dashboard. Caption: 'Starting something new today — follow along.'","Comment below: what's one thing you're working to build right now?","Film in one take. Imperfect is better than polished. People connect with real, not rehearsed.","15 min");
-PLANS["1-Fitness"]=p(["Day 1 of documenting my fitness journey publicly — here's why I'm doing it…","I'm combining AI and fitness content for 30 days. Here's what I'm building…"],["Who you are and your fitness background","Why you're starting this challenge now","What transformation you're working toward or helping others achieve","How SHIFT is part of your content journey","End with: 'Come back tomorrow — I'm showing everything'"],"Write a short, energetic bio for a fitness coach who helps [your audience] get [specific result]. Conversational tone, no jargon.","Post a screenshot of SHIFT. Caption: 'Using AI to build my fitness brand — Day 1.'","Drop a comment: what's your current fitness goal?","Be specific about your fitness niche — weight loss, strength, running. Specificity builds faster audiences.","15 min");
-PLANS["1-Wellness"]=p(["I'm documenting 30 days of building a wellness brand with AI — Day 1…","Why I decided to show up publicly every day for the next month…"],["Your name and wellness focus area","What drew you to wellness and helping others","Why you're starting this public challenge","What you want your audience to feel or achieve","Invite them to follow the journey"],"Write a warm, authentic bio for a wellness coach who guides [audience] toward [outcome]. Use calming, encouraging language.","Share your SHIFT dashboard with the caption: 'Documenting my wellness brand journey — Day 1 of 30.'","Tell me: what does feeling well mean to you in one word?","Wellness audiences value authenticity and calm energy. Speak slowly, smile, and be genuine.","15 min");
-PLANS["1-Real Estate"]=p(["Day 1 of building my real estate brand publicly using AI — here's my why…","I just committed to 30 days of content. Here's what I want real estate to look like for my clients…"],["Your name, market, and how long you've been in real estate","Why you're showing up publicly now","What you want buyers/sellers to know about working with you","Your 30-day goal with this challenge","Call them to follow along"],"Write a confident but approachable bio for a real estate agent in [your market] who helps [buyers/sellers/investors] achieve [outcome].","Screenshot SHIFT. Caption: 'Building my real estate brand with AI — Day 1.'","Are you currently buying, selling, or just watching the market? Comment below.","Real estate is a trust business. Focus on your personality, not just your stats, on Day 1.","15 min");
-PLANS["1-Marketing"]=p(["Day 1 of building my marketing brand in public — here's what I'm doing and why…","I'm documenting 30 days of AI-powered content creation starting today…"],["Your name and marketing specialty","Who you help and what results you get them","Why you're doing this challenge publicly","What people will learn from following you","End: 'Tag someone who needs better marketing'"],"Write a punchy, results-focused bio for a marketing expert who helps [audience] with [specific marketing outcome]. Keep it bold and direct.","Post your SHIFT dashboard. Caption: 'Day 1 — building my marketing brand with AI.'","What's your biggest marketing challenge right now? Drop it below.","Marketers are held to a higher standard — make sure your own content is compelling from Day 1.","15 min");
-PLANS["1-Personal Development"]=p(["Day 1 of my 30-day public growth challenge — here's why I'm doing this…","I decided to stop waiting and start building. Here's what that looks like…"],["Who you are and what personal development means to you","The moment that changed how you think about growth","Why you're committing to 30 days publicly","What you hope others take away from following you","Invite them to join the journey"],"Write an inspiring bio for a personal development coach who helps [audience] break through [obstacle] and achieve [transformation].","Screenshot SHIFT. Caption: 'Day 1 of building something that matters — follow along.'","What's one belief you're working on changing right now?","Personal development content works best when it's vulnerable. Share something real on Day 1.","15 min");
-PLANS["1-Lifestyle"]=p(["Day 1 of documenting my life and building a brand at the same time — here's the plan…","I'm going public for 30 days. Here's why and what you can expect…"],["Introduce your lifestyle and what makes it worth sharing","Why you're starting this challenge","What people will see over the next 30 days","The one thing you want to be known for","End: 'Come back tomorrow for Day 2'"],"Write a fun, personality-driven bio for a lifestyle creator who shares [their lifestyle focus] and inspires others to [outcome].","Post your SHIFT dashboard. Caption: 'Starting a 30-day content challenge today.'","What kind of content do you love seeing in your feed? Comment below.","Lifestyle content lives and dies by personality. Let yours shine from the very first video.","15 min");
-
-var allNiches=["Business","Fitness","Wellness","Real Estate","Marketing","Personal Development","Lifestyle"];
-
-var days2_30=[
-  {day:2,hooks:["The best career lesson nobody taught me…","After years in this field, this one thing changed everything for me…"],outline:["Set up the lesson: what situation taught you this","What you believed before vs what you know now","How it changed the way you approach your work","How your audience can apply it today","Close with a reflective question"],prompt:"Write a compelling caption about a career lesson learned the hard way. Make it honest and relatable for [NICHE].",story:"Behind the scenes of creating this post in SHIFT. Show the process.",cta:"What's a lesson your career taught you that school never did?",tips:"Use a real story — even if it's uncomfortable. The more specific, the more it resonates.",time:"20 min"},
-  {day:3,hooks:["I used SHIFT to create an image of what success looks like — here's what I made…","This AI-generated image represents exactly where I'm headed in the next 12 months…"],outline:["Show the image you created in SHIFT","Describe what it represents about your goals","Why visualizing your future matters","What you're actively working toward right now","Ask followers what their version of success looks like"],prompt:"Create a professional, inspiring image representing success and growth in [NICHE]. Bold and aspirational.",story:"Poll: 'Would you use AI to create content?' Yes / Not sure yet",cta:"What does your version of success look like? Describe it below.",tips:"Use the image as a conversation starter. Tell the story behind what it means to you.",time:"15 min"},
-  {day:4,hooks:["The biggest mistake I made — and what it taught me…","If I could go back and tell myself one thing when I started…"],outline:["Set up the mistake: what happened and when","Why you made the decision you did at the time","What went wrong and what it cost you","The lesson you took away","How your audience can avoid making the same mistake"],prompt:"Write a candid lessons-learned post about a real mistake in [NICHE]. Honest, self-aware, and ultimately empowering.",story:"Run a poll related to the biggest challenge in your niche.",cta:"What's a mistake you've made that you're now grateful for?",tips:"Vulnerability about mistakes builds more trust than showcasing wins. Don't soften the story.",time:"15 min"},
-  {day:5,hooks:["'Success isn't given. It's built — one decision at a time.'","'The people who last are built on value, not hype.'"],outline:["Open with the quote or graphic created in SHIFT","Share why this quote resonates with you personally","Connect it to a current challenge or season you're in","How your audience can apply this mindset today","End with an energizing call to action"],prompt:"Create a bold motivational graphic for [NICHE] professionals. Dark background, gold text, modern design.",story:"Show yourself using SHIFT to create the graphic. Caption: 'Made this in 2 minutes — Day 5.'",cta:"Save this post if it resonates — and tag someone who needs to see it.",tips:"The caption matters more than the graphic. Make the personal connection strong.",time:"15 min"},
-  {day:6,hooks:["I want to be known as the person who makes [result] possible…","Here's what I'm building — and why I want my name attached to it…"],outline:["What you want to be known for — your specific expertise","Why you chose this niche or focus area","Who your ideal client or audience is","The gap in the market you're filling","Why it matters to you personally"],prompt:"Write a clear personal brand statement for someone in [NICHE]. Confident, specific, and memorable.",story:"Q&A box: 'What do you want help with most?' Use responses to guide future content.",cta:"What do you want to be known for? Comment below — I read every single one.",tips:"Personal branding isn't about being famous. It's about being the first person someone thinks of in your category.",time:"20 min"},
-  {day:7,hooks:["A week into building in public — here's what I've learned so far…","Day 7 reflection: what worked, what didn't, and what I'm taking into Week 2…"],outline:["Your single biggest takeaway from Week 1","What surprised you most about showing up publicly","One thing that was harder than expected","One thing that was easier than expected","What you're most focused on going into Week 2"],prompt:"Write a reflection post about the first week of building a [NICHE] brand publicly. Honest, grounded, and forward-looking.",story:"Share your Week 1 stats or results — views, followers, engagement.",cta:"If you've been following along — what has resonated most with you this week?",tips:"Reflection posts build long-term audience trust. Be honest about the hard parts, not just the wins.",time:"20 min"},
-  {day:8,hooks:["Unpopular opinion: most people in [industry] quit too early — here's why…","I'm going to say something that might make some people uncomfortable…"],outline:["State the unpopular opinion clearly upfront","Acknowledge why most people disagree","Share the evidence or experience behind your view","Why this opinion actually helps your audience","Invite respectful pushback in the comments"],prompt:"Write a provocative but respectful unpopular opinion post for [NICHE]. Bold, confident, and well-reasoned.",story:"Share the audience responses to this post throughout the day.",cta:"Agree or disagree? Tell me in the comments — respectful debate welcome.",tips:"Unpopular opinion posts work because they create conversation. Stand firm but stay open.",time:"20 min"},
-  {day:9,hooks:["If you're new to [industry], the one thing you need to understand first is…","Most beginners skip this step — here's why it matters so much…"],outline:["Identify the single most important concept for beginners","Explain it in plain, simple language","Why most beginners misunderstand or skip it","A practical example or step they can use immediately","End with an encouraging message"],prompt:"Write a clear, beginner-friendly explainer about one fundamental concept in [NICHE]. No jargon.",story:"Share audience responses or questions from this post.",cta:"Save this for reference — and share it with someone just starting out.",tips:"Educational content that makes complex things simple earns saves and shares. Aim for clarity over cleverness.",time:"20 min"},
-  {day:10,hooks:["This is what success in my field actually looks like — I created this with AI…","I used SHIFT to visualize what winning looks like in my industry…"],outline:["Reveal the AI image you created in SHIFT","Describe what the image represents specifically","What does success look like to you in this space?","How you're actively building toward it","Ask followers what success looks like for them"],prompt:"Create a powerful image representing success and achievement in [NICHE]. Professional and inspiring.",story:"Poll: 'What does success look like for you right now?' Thriving career / Health / Freedom / Relationships",cta:"Describe your version of success — I'd love to hear it.",tips:"Use this image as a mirror for your audience. Make the vision feel attainable.",time:"15 min"},
-  {day:11,hooks:["The 3 mistakes I see people make in [industry] over and over again…","If you're in [niche], avoid these 3 common traps…"],outline:["Introduce the 3 mistakes briefly","Mistake #1 — what it is and why people make it","Mistake #2 — often related to impatience or misinformation","Mistake #3 — usually the hardest one to admit","Quick summary and the fix for each one"],prompt:"Write a practical post about 3 common mistakes in [NICHE] and how to avoid them. Direct and actionable.",story:"Share the comments and reactions throughout the day.",cta:"Which of these have you made? Comment the number — no judgment here.",tips:"'3 mistakes' posts get saved. Make each mistake specific enough to be instantly recognizable.",time:"20 min"},
-  {day:12,hooks:["Discipline got me further than motivation ever did — here's why…","Nobody talks about what consistency actually costs — and what it pays back…"],outline:["Open with a truth about discipline that most people avoid","The difference between motivation and discipline","What your own consistency practice looks like day to day","The result that consistency has created in your life or work","A 7-day challenge for your audience"],prompt:"Write a motivational post about discipline and consistency in [NICHE]. Honest, grounded, and energizing.",story:"Show yourself doing your own daily habit. Keep it real.",cta:"What's one thing you're committing to do consistently for the next 7 days?",tips:"Discipline posts resonate most when they're honest about how hard it actually is.",time:"15 min"},
-  {day:13,hooks:["5 myths about [industry] that are keeping people stuck…","The most common lies people believe about [niche] — debunked…"],outline:["Introduce the 5 myths briefly","Myth #1 — state it, then bust it","Myth #2 — usually a fear-based belief","Myth #3 — often from bad advice","Myth #4 — a common shortcut myth","Myth #5 — the most persistent one","Close with an empowering reframe"],prompt:"Write a myth-busting post debunking 5 common beliefs in [NICHE]. Each myth gets one clear counterpoint.",story:"Share reactions to the myths throughout the day.",cta:"Which myth surprised you most? Comment the number.",tips:"Myth-busting posts build authority fast. Make sure each 'bust' is specific and backed by real insight.",time:"25 min"},
-  {day:14,hooks:["Week 2 done — here's what I built, what I learned, and what's next…","Halfway through my 30-day challenge. Here's the honest update…"],outline:["Your top win from Week 2","The most important thing you learned about your audience","What content performed best and why","What you're changing or doubling down on for Week 3","A message of gratitude to those following along"],prompt:"Write an honest Week 2 recap for someone building a [NICHE] brand in public. Reflective, results-focused, and forward-looking.",story:"Share your Week 2 analytics or engagement screenshots.",cta:"What content from the past 2 weeks has been most valuable to you?",tips:"Week 2 recaps reward your most loyal followers. Acknowledge them directly.",time:"20 min"},
-  {day:15,hooks:["Most people don't realize how much this is actually costing them…","Most people don't realize that the way they're approaching this is the problem…"],outline:["Open with the 'most people don't realize' statement","The insight or truth behind it","What happens when people discover this truth","A story or example that makes it concrete","Invite followers to share what they didn't realize until it was pointed out"],prompt:"Write an eye-opening post that starts with 'Most people don't realize...' for [NICHE]. Insightful and memorable.",story:"Share reactions in your stories throughout the day.",cta:"What's something in your world that most people get completely wrong?",tips:"The 'most people don't realize' format works because it makes readers feel like insiders.",time:"20 min"},
-  {day:16,hooks:["This image is the vision I'm chasing — I created it with AI in 2 minutes…","I asked SHIFT to create my aspirational future — here's what it made…"],outline:["Reveal the AI-generated aspirational image","Tell the story behind it — what you were thinking when you prompted SHIFT","What this vision means to you right now","The gap between where you are and where this image lives","How you're closing that gap every day"],prompt:"Create a breathtaking aspirational image representing the ultimate vision in [NICHE]. Beautiful, specific, and deeply motivating.",story:"Poll: 'Do you have a clear vision of where you're headed?' Yes / Getting clearer / Not yet",cta:"What vision are you chasing right now?",tips:"The story behind the image is more powerful than the image itself. Spend time on your caption.",time:"15 min"},
-  {day:17,hooks:["There was a moment when everything fell apart — and what it taught me changed everything…","The hardest thing I've been through and what it made possible on the other side…"],outline:["Set the scene — what was happening during this challenge","The moment things got hardest","What you did to get through it","The gift or lesson that came from the adversity","What you want your audience to take away when they're in hard seasons"],prompt:"Write a powerful story about overcoming adversity in [NICHE]. Honest, human, and ultimately hopeful.",story:"Share a quiet, personal story frame. Let followers know this post was hard to make.",cta:"What's a hard season that ended up shaping you in ways you're grateful for?",tips:"Adversity stories are the most powerful content you can create. Don't minimize the hard parts.",time:"25 min"},
-  {day:18,hooks:["Everyone in [industry] says you should do X. I disagree — here's why…","The conventional wisdom in [niche] that I think is actually holding people back…"],outline:["State the common belief clearly","Acknowledge why most people accept it","Present your challenge to it — with reasoning","What you believe is actually true or more effective","Invite followers to share their own perspective"],prompt:"Write a thought-provoking post that challenges a widely-held belief in [NICHE]. Respectful but bold.",story:"Share the most interesting responses and reactions throughout the day.",cta:"Do you agree or disagree? Tell me where you stand.",tips:"Challenging beliefs creates conversation. Be curious, not combative.",time:"20 min"},
-  {day:19,hooks:["This might be controversial but I believe this about [industry]…","I'm going to say something that some people won't like…"],outline:["Open with the controversial opinion stated clearly","Why you believe this despite knowing some will disagree","The evidence or experience behind your view","What you're NOT saying — acknowledge the nuance","Invite respectful discussion"],prompt:"Write a controversial but respectful opinion post about [NICHE]. Confident, nuanced, and open to discussion.",story:"Share the most interesting responses throughout the day.",cta:"Where do you stand on this? I want to hear from both sides.",tips:"Controversial posts that stay respectful create the deepest engagement. Don't back down — but do listen.",time:"20 min"},
-  {day:20,hooks:["20 days in — here's why I started using SHIFT and what it's actually taught me…","Halfway through this challenge, and SHIFT has surprised me in ways I didn't expect…"],outline:["Why you originally decided to start using SHIFT","What you expected vs what actually happened","The most surprising thing SHIFT has helped you create","How it's changed the way you think about content","Who you'd recommend SHIFT to and why"],prompt:"Write an honest, curious reflection on using SHIFT for 20 days in [NICHE]. What's surprising, what's valuable, what you've learned.",story:"Show a quick screenshot of something you created in SHIFT today.",cta:"Have you tried AI for content creation yet? What stopped you or what got you started?",tips:"This is your most natural SHIFT post. You're a user sharing an experience — not a salesperson.",time:"20 min"},
-  {day:21,hooks:["Week 3 recap — here's what this week of content actually created…","21 days of showing up in public — here's the honest score so far…"],outline:["The biggest win from Week 3","The piece of content that surprised you most","What your audience is consistently responding to","What you're learning about your niche and your voice","Your energy and intention going into the final week"],prompt:"Write an honest, energized Week 3 recap for a [NICHE] creator building in public. Real results, real lessons, real momentum.",story:"Share Week 3 engagement or growth highlights.",cta:"What's been your favorite piece of content from the past 3 weeks?",tips:"Week 3 recaps build anticipation for the finale. Tease what's coming in Week 4.",time:"20 min"},
-  {day:22,hooks:["The smartest thing I did was stop relying on one income source — here's what changed…","Creating multiple income streams isn't a luxury anymore. Here's how I started…"],outline:["Why depending on one income source is risky","The mindset shift that opened you up to multiple streams","What your current value streams look like","How tools like SHIFT help you create and scale faster","Invite followers to think about their own income diversification"],prompt:"Write an educational post about creating multiple income streams in [NICHE]. Practical, empowering, and naturally mentions AI as a tool.",story:"Show your workspace or a tool you use. Caption: 'Building more than one way to create value.'",cta:"How many income streams do you currently have — or are you working toward?",tips:"Mention SHIFT as one tool in your toolkit, not the whole story. Keep it natural.",time:"20 min"},
-  {day:23,hooks:["This is the vision I'm building toward — I created it with AI…","My future in one image — here's what I'm working toward in the next 3 years…"],outline:["Reveal your SHIFT-created future vision image","Describe each element and what it represents","The timeline you're working toward","The daily actions you're taking to build toward this","Invite followers to share their own future vision"],prompt:"Create a powerful future vision image for a [NICHE] entrepreneur — success, freedom, impact, fulfillment. Aspirational and specific.",story:"Poll: 'Have you written out or visualized your 3-year vision?' Yes / No / Working on it",cta:"What does your future vision look like? Describe it in the comments.",tips:"Make the vision specific enough that followers can see themselves building something similar.",time:"15 min"},
-  {day:24,hooks:["Leverage is the reason some people build more in a year than others do in a decade…","The moment I understood leverage, everything about how I work changed…"],outline:["Define leverage in plain terms — doing more with less","The old way vs the leveraged way in your niche","How AI tools like SHIFT have added leverage to your content creation","Other forms of leverage your audience can access","A simple first step toward using leverage"],prompt:"Write an insightful post about leverage and why AI is one of the most accessible forms of leverage available today for [NICHE]. Practical and empowering.",story:"Show yourself using SHIFT to illustrate leverage in action. Caption: 'This took 3 minutes.'",cta:"Where in your business or life do you need more leverage right now?",tips:"Keep SHIFT as an example of leverage, not the focus of the post. The insight is the product.",time:"20 min"},
-  {day:25,hooks:["Time freedom isn't about doing nothing — it's about doing what matters…","The moment I stopped trading time for money, everything shifted…"],outline:["What time freedom means to you — specifically","What you gave up or changed to move toward it","What your time looks like now vs before","Why time freedom is the real goal behind most people's ambitions","An invitation for followers to define what time freedom means to them"],prompt:"Write a personal, reflective post about time freedom and what it means for someone in [NICHE]. Aspirational but grounded.",story:"Post a lifestyle photo that represents your version of time freedom.",cta:"What would you do with an extra 10 hours a week?",tips:"Time freedom content should feel earned, not boastful. Show the work behind the freedom.",time:"20 min"},
-  {day:26,hooks:["AI isn't replacing the way we work — it's revealing who prepared and who didn't…","The people who understand what AI is actually doing are positioning themselves years ahead…"],outline:["What AI is actually changing in your industry — specifically","Who it's helping most and who it's leaving behind","How you've adapted and what you've learned","What the next 3–5 years look like because of AI","What your audience can do now to stay ahead"],prompt:"Write a forward-thinking post about how AI is changing [NICHE] and what people should do to adapt. Insightful and grounded.",story:"Share a quick example of something AI helped you create this week.",cta:"What's one way you've already used AI to work smarter?",tips:"Avoid hype or doom. The most valuable AI content is practical and specific.",time:"20 min"},
-  {day:27,hooks:["27 days using SHIFT — here's my honest review…","What I've actually created with SHIFT and what surprised me most…"],outline:["How long you've been using SHIFT and what you set out to do","The 3 things you like most about it","Something that surprised you that you didn't expect","What you've created that you're most proud of","Who you think would benefit most from trying it"],prompt:"Write an honest, personal review of using SHIFT for 27 days as a [NICHE] creator. Authentic, specific, and curious — not salesy.",story:"Show your favorite piece of content you created with SHIFT this month.",cta:"What questions do you have about using AI for content creation?",tips:"This should sound like a friend sharing what they've been using. Authentic over polished.",time:"20 min"},
-  {day:28,hooks:["The opportunity most people in this space are sleeping on right now…","While everyone's focused on the obvious, the real opportunity is here…"],outline:["Name the overlooked opportunity clearly","Why most people aren't seeing it or acting on it","The evidence that it's real","How your audience can position themselves to take advantage","A simple first step they can take this week"],prompt:"Write an insightful post about an underrated opportunity in [NICHE] that most people are missing. Specific, timely, and actionable.",story:"Share a behind-the-scenes of how you're personally taking advantage of this opportunity.",cta:"Are you already seeing this opportunity? What's holding you back from going after it?",tips:"Opportunity posts work best when they're specific to your niche. Avoid vague 'the time is now' language.",time:"20 min"},
-  {day:29,hooks:["If you're curious about SHIFT, here's what I'd tell you…","I've been using SHIFT for 29 days — here's the simple version of what it does…"],outline:["A straightforward description of what SHIFT is and what it helps with","Who it's best suited for — keep it specific","What you've been able to create using it","How someone can get started if they're curious","A simple, no-pressure invitation to learn more"],prompt:"Write a warm, no-pressure introduction to SHIFT for [NICHE] people who are curious but haven't tried it. Friendly and honest.",story:"Post a final 'process' video — from prompt to finished content — to show SHIFT in action.",cta:"If you're curious about SHIFT, send me a message. Happy to share more with zero pressure.",tips:"This is an invitation, not a pitch. The second someone feels sold to, they check out.",time:"20 min"},
-  {day:30,hooks:["30 days. 30 pieces of content. Here's everything I learned…","I committed to 30 days of building in public — here's the honest final report…"],outline:["What you set out to do on Day 1 vs where you actually ended up","The 3 most important things you learned about content, your niche, and yourself","The single piece of content you're most proud of","What surprised you most about the entire process","What's next — and an open invitation for anyone curious about SHIFT"],prompt:"Write a powerful, celebratory 30-day challenge recap for a [NICHE] creator. Honest, grateful, forward-looking, and genuinely inviting.",story:"Create a final highlight reel or photo recap of your 30-day journey.",cta:"If anything from these 30 days resonated with you — or if you're curious about SHIFT — send me a message. I'd love to chat.",tips:"End on gratitude. Thank your audience for following along. This post plants seeds for every conversation to come.",time:"30 min"}
+// ── WEEK 1 DAYS 2-7 ────────────────────────────────────────────────────
+var w1rest=[
+  {day:2,
+   hooks:[
+     "A lesson I learned the hard way — and how it changed everything I do now…",
+     "Nobody taught me this. I had to learn it myself. And it cost me more than I want to admit…"
+   ],
+   prompts:{
+     "Business":"Write a compelling social media caption about a hard business lesson. Honest, specific, and relatable. End with: 'What's a lesson your career taught you?'",
+     "Fitness":"Write a relatable caption about a fitness lesson learned through struggle. Personal and encouraging. End with a question about what your audience learned.",
+     "Wellness":"Write a warm caption about a wellness lesson that came from burnout or struggle. Gentle and honest. End with an engaging question.",
+     "Real Estate":"Write an educational caption about a real estate lesson learned on the job. Trustworthy and candid. End with a question for buyers or sellers.",
+     "Marketing":"Write a bold caption about a marketing lesson that changed how you work. Direct and insightful. End with a question for your audience.",
+     "Personal Development":"Write an inspiring caption about a mindset lesson that created real change. Vulnerable and powerful. End with a reflective question.",
+     "Lifestyle":"Write a personal caption about a life lesson that reshaped how you live. Warm and real. End with a question for your followers."
+   },
+   cta:"What's the biggest lesson your journey has taught you? Drop it below."
+  },
+  {day:3,
+   hooks:[
+     "I used SHIFT to create an image of exactly where I'm headed. Here's what it made…",
+     "I typed my goal into SHIFT and it created this. My future in one image…"
+   ],
+   prompts:{
+     "Business":"Create a bold, aspirational image representing a successful business entrepreneur — growth, confidence, and momentum. Professional and inspiring.",
+     "Fitness":"Create a powerful image representing peak fitness and physical transformation. Dynamic and motivating.",
+     "Wellness":"Create a serene, beautiful image representing a life of optimal health and inner peace. Calming and aspirational.",
+     "Real Estate":"Create a stunning image representing real estate success — a dream property, a satisfied client, a thriving market. Clean and aspirational.",
+     "Marketing":"Create a bold image representing marketing success — brand growth, engaged audience, measurable impact. Dynamic and modern.",
+     "Personal Development":"Create an uplifting image representing personal transformation and becoming your best self. Powerful and inspiring.",
+     "Lifestyle":"Create a beautiful aspirational lifestyle image — freedom, joy, adventure, and abundance. Warm and inviting."
+   },
+   cta:"What does your version of this look like? Tell me in the comments."
+  },
+  {day:4,
+   hooks:[
+     "The mistake I made that I'm most grateful for. Here's the full story…",
+     "I failed at this — and it turned out to be the best thing that ever happened to me…"
+   ],
+   prompts:{
+     "Business":"Write a candid 60-second script about a real business mistake and what it taught you. Self-aware and ultimately empowering.",
+     "Fitness":"Write a relatable script about a fitness mistake — overtraining, wrong diet, ignoring recovery — and what you learned from it.",
+     "Wellness":"Write a compassionate script about a wellness mistake you kept making and the shift that changed everything.",
+     "Real Estate":"Write a professional but honest script about a real estate lesson that cost you or a client — and how you do things differently now.",
+     "Marketing":"Write a direct script about a marketing mistake that wasted time or money and the counterintuitive lesson it taught.",
+     "Personal Development":"Write a vulnerable script about a mindset or habit mistake that kept you stuck and the breakthrough that followed.",
+     "Lifestyle":"Write a warm, personal script about a lifestyle choice that wasn't serving you and what changed when you let it go."
+   },
+   cta:"What's a mistake you made that ended up being a gift? Share it below."
+  },
+  {day:5,
+   hooks:[
+     "I made this motivational graphic in SHIFT in under 2 minutes. Here's what it says and why it matters to me…",
+     "This quote is something I come back to every time things get hard. I created the graphic in SHIFT — here's the story behind it…"
+   ],
+   prompts:{
+     "Business":"Create a bold motivational graphic for entrepreneurs. Dark background, gold text, modern font. Quote: 'Build something worth talking about.'",
+     "Fitness":"Create a powerful fitness motivation graphic. Athletic imagery, strong typography. Quote: 'Show up. Every single day.'",
+     "Wellness":"Create a peaceful wellness motivation graphic. Soft nature background, elegant font. Quote: 'You can't pour from an empty cup.'",
+     "Real Estate":"Create a sleek real estate motivation graphic. Modern design, professional colors. Quote: 'Every home has a story. Let's find yours.'",
+     "Marketing":"Create a sharp marketing motivation graphic. Bold contrast, clean layout. Quote: 'Stop selling. Start helping.'",
+     "Personal Development":"Create an inspiring personal growth graphic. Clean, minimalist design. Quote: 'Who you become in the process is the real reward.'",
+     "Lifestyle":"Create a beautiful lifestyle inspiration graphic. Warm, bright imagery. Quote: 'Design your life before someone else does.'"
+   },
+   cta:"Save this if it hits home — and share it with someone who needs it today."
+  },
+  {day:6,
+   hooks:[
+     "If you've been following me and wondering what I actually do — here's the clearest answer I can give…",
+     "Day 6. I want to take a minute to tell you exactly who I am, who I help, and what I'm building…"
+   ],
+   prompts:{
+     "Business":"Write a confident, natural 60-second talking head script where a business entrepreneur shares their personal brand — who they are, who they help, and why it matters. Not corporate. Real.",
+     "Fitness":"Write an energetic 60-second script where a fitness coach clearly explains their personal brand — their niche, their people, and their mission.",
+     "Wellness":"Write a warm 60-second script where a wellness practitioner shares what they stand for and who they're here to serve. Heartfelt and clear.",
+     "Real Estate":"Write a professional but personal 60-second script where a real estate agent explains their brand, their market, and why they love what they do.",
+     "Marketing":"Write a sharp 60-second script where a marketing expert explains exactly who they help and what makes their approach different.",
+     "Personal Development":"Write an inspiring 60-second script where a personal development coach shares their mission, their values, and who they're building for.",
+     "Lifestyle":"Write a personality-driven 60-second script where a lifestyle creator explains what they're about, who their audience is, and what makes them worth following."
+   },
+   cta:"What do YOU want to be known for? Drop it in the comments — I read every one."
+  },
+  {day:7,
+   hooks:[
+     "One week down. Here's the honest truth about how it went…",
+     "7 days of showing up publicly. Here's what surprised me, what I learned, and what's next…"
+   ],
+   prompts:{
+     "Business":"Write an honest, reflective Week 1 recap caption for a business entrepreneur building in public. Real results, real lessons, and genuine excitement for Week 2.",
+     "Fitness":"Write an energetic Week 1 recap for a fitness creator. Celebrate the wins, acknowledge the hard parts, and tease what's coming.",
+     "Wellness":"Write a warm, grateful Week 1 reflection for a wellness creator. Gentle honesty about the journey and a soft invitation to keep following.",
+     "Real Estate":"Write a professional Week 1 recap for a real estate content creator. Results-focused, trustworthy, and forward-looking.",
+     "Marketing":"Write a data-aware Week 1 recap for a marketing creator. What worked, what didn't, and what the numbers showed.",
+     "Personal Development":"Write a deeply reflective Week 1 recap for a personal development creator. What shifted, what surprised, and what growth looked like.",
+     "Lifestyle":"Write a warm, personal Week 1 lifestyle recap. Full of personality and real moments from the week."
+   },
+   cta:"What's been your favorite post so far? Let me know — it helps me create better content for you."
+  }
 ];
 
-days2_30.forEach(function(d){
-  allNiches.forEach(function(n){
-    PLANS[d.day+"-"+n]=p(
-      d.hooks,
-      d.outline,
-      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n).replace(/\[industry\]/g,n),
-      d.story,d.cta,d.tips,d.time
+w1rest.forEach(function(d){
+  NICHES.forEach(function(n){
+    var prompt=typeof d.prompts==="object"?d.prompts[n]:d.prompts;
+    PLANS[d.day+"-"+n]=pl(d.hooks[0],d.hooks[1],prompt,d.cta);
+  });
+});
+
+// ── WEEK 2 ──────────────────────────────────────────────────────────────
+var w2=[
+  {day:8,
+   h1:"Unpopular opinion time. This might ruffle some feathers in my industry but it needs to be said…",
+   h2:"Everyone in [niche] talks about X. I'm here to tell you why I think that's wrong…",
+   prompt:"Write a bold, respectful 60-second talking head script sharing an unpopular opinion in the [NICHE] space. Confident, backed by experience, and ends with an invitation for respectful debate.",
+   cta:"Agree or disagree? Tell me below. I want to hear all sides."
+  },
+  {day:9,
+   h1:"If you're just starting out in [niche], here's the one thing you need to understand before anything else…",
+   h2:"The concept that changed everything for me in [niche] — and nobody talks about it enough…",
+   prompt:"Write a clear, helpful educational caption teaching one foundational concept in [NICHE] to beginners. Simple language, no jargon. Created using SHIFT. Ends with a prompt to save and share.",
+   cta:"Save this — and share it with someone just getting started. It could save them months."
+  },
+  {day:10,
+   h1:"I used SHIFT to create what success looks like in my world. Here's the image — and what it means…",
+   h2:"This is my visual definition of winning in [niche]. I made it with SHIFT in 2 minutes…",
+   prompt:"Create a striking, aspirational image representing success and achievement in [NICHE]. Bold, specific, and inspiring. Something that makes people stop scrolling.",
+   cta:"What does success look like for you right now? Describe it in one sentence."
+  },
+  {day:11,
+   h1:"The 3 mistakes I see people make in [niche] over and over again — and how to avoid every single one…",
+   h2:"Stop making these 3 mistakes in [niche]. I see them every day and they're costing people dearly…",
+   prompt:"Write a direct, practical 60-second script covering 3 common mistakes in [NICHE]. Each mistake clearly named and fixed in plain language. Created using SHIFT. Ends with a CTA to comment which one they've made.",
+   cta:"Which of these have you made? Comment 1, 2, or 3 — no judgment, we've all been there."
+  },
+  {day:12,
+   h1:"Motivation got me started. Discipline is what's keeping me going. Here's the difference…",
+   h2:"Day 12 and I'll be honest — I didn't feel like showing up today. Here's what I did anyway…",
+   prompt:"Write an honest, grounding motivational caption about choosing discipline over motivation in [NICHE]. Real, not preachy. Includes a natural mention of using SHIFT to stay consistent with content.",
+   cta:"What's one thing you're committing to show up for — even when you don't feel like it?"
+  },
+  {day:13,
+   h1:"5 things people believe about [niche] that simply aren't true. Let's clear this up once and for all…",
+   h2:"Myth-busting time. These 5 beliefs about [niche] are holding people back — including maybe you…",
+   prompt:"Write a punchy carousel-style caption debunking 5 common myths in [NICHE]. Each myth gets one clear truth. Made with SHIFT. Ends with a save and share CTA.",
+   cta:"Which myth did you believe? Comment the number — I'll reply to every one."
+  },
+  {day:14,
+   h1:"Week 2 done. Here's what I created, what I learned, and what SHIFT made possible…",
+   h2:"14 days in. The honest update on my 30-day SHIFT challenge — what's working and what surprised me…",
+   prompt:"Write a genuine Week 2 recap caption for someone doing a 30-day SHIFT challenge in [NICHE]. Share real progress, mention SHIFT naturally as the tool behind the content, and build excitement for Week 3.",
+   cta:"If you've been following along — what content has been most useful to you so far?"
+  }
+];
+w2.forEach(function(d){
+  NICHES.forEach(function(n){
+    PLANS[d.day+"-"+n]=pl(
+      d.h1.replace(/\[niche\]/g,n),
+      d.h2.replace(/\[niche\]/g,n),
+      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
+      d.cta
     );
   });
 });
+
+// ── WEEK 3 ──────────────────────────────────────────────────────────────
+var w3=[
+  {day:15,
+   h1:"Most people in [niche] don't realize this — and it's costing them every single day…",
+   h2:"Most people don't realize that the way they're approaching [niche] is the exact problem…",
+   prompt:"Write an eye-opening 60-second talking head script that starts with 'Most people don't realize...' for someone in [NICHE]. Insightful, specific, and makes the viewer feel like an insider. Naturally created using SHIFT.",
+   cta:"What's something in your world that most people completely get wrong?"
+  },
+  {day:16,
+   h1:"I created my vision for the future using SHIFT — and when I saw the image, it stopped me in my tracks…",
+   h2:"This is where I'm headed. I typed it into SHIFT and this is what it created. Here's the story behind it…",
+   prompt:"Create a breathtaking aspirational image representing the ultimate vision and future success for someone in [NICHE]. Deeply motivating. The kind of image that makes someone stop and say 'I want that.'",
+   cta:"What are you building toward right now? Tell me in the comments."
+  },
+  {day:17,
+   h1:"There was a season where everything fell apart. This is what happened — and what it gave me…",
+   h2:"I've never shared this publicly. But 17 days into this challenge, it feels like the right time…",
+   prompt:"Write a powerful, honest 60-second talking head script about overcoming a hard season in [NICHE]. Vulnerable, human, and ultimately hopeful. The kind of story that makes people feel less alone.",
+   cta:"What's a hard chapter that ended up shaping you? You don't have to share the whole thing — even one word helps."
+  },
+  {day:18,
+   h1:"Everyone in [niche] says you should do this. I think it's actually holding you back…",
+   h2:"The conventional wisdom in [niche] that I respectfully but completely disagree with…",
+   prompt:"Write a carousel-style caption that challenges a common belief in [NICHE]. Respectful but bold. Each point clearly made. Created with SHIFT. Invites followers to share their own perspective.",
+   cta:"Do you agree or disagree? I genuinely want to hear your take."
+  },
+  {day:19,
+   h1:"A bold opinion about [niche] that I've been sitting on for a while. Today I'm saying it out loud…",
+   h2:"Day 19. Here's something I believe about [niche] that most people in my space won't say…",
+   prompt:"Write a confident, nuanced 60-second script sharing a bold opinion about [NICHE]. Not inflammatory — thoughtful and backed by real experience. Ends by inviting respectful pushback.",
+   cta:"Where do you stand on this? Both sides welcome in the comments."
+  },
+  {day:20,
+   h1:"20 days using SHIFT. Here's what it's actually helped me create — and what genuinely surprised me…",
+   h2:"Day 20 of my SHIFT challenge. Honest update: what I've made, what I've learned, and why I'm still going…",
+   prompt:"Write a natural, honest 60-second talking head script reviewing 20 days of using SHIFT in [NICHE]. Share what you've created, what surprised you, and why you'd recommend it — without sounding like a commercial. Real user, real experience.",
+   cta:"Curious about SHIFT? Drop a question below — happy to share everything I know."
+  },
+  {day:21,
+   h1:"3 weeks in. Here's the honest scorecard on my 30-day SHIFT challenge…",
+   h2:"Day 21. What I've built, what I've learned, and why Week 4 is about to be the best one yet…",
+   prompt:"Write an energized, honest Week 3 recap caption for a [NICHE] creator doing a 30-day SHIFT challenge. Real progress, natural SHIFT mention, genuine excitement for the final week.",
+   cta:"What do you want to see from me in Week 4? Tell me below and I'll make it happen."
+  }
+];
+w3.forEach(function(d){
+  NICHES.forEach(function(n){
+    PLANS[d.day+"-"+n]=pl(
+      d.h1.replace(/\[niche\]/g,n),
+      d.h2.replace(/\[niche\]/g,n),
+      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
+      d.cta
+    );
+  });
+});
+
+// ── WEEK 4 ──────────────────────────────────────────────────────────────
+var w4=[
+  {day:22,
+   h1:"AI isn't a gimmick. Here's how it's actually helping me build faster than I ever thought possible…",
+   h2:"Day 22. Here's what using SHIFT every day has done to my output — the numbers don't lie…",
+   prompt:"Write a practical, inspiring 60-second script about how AI (specifically SHIFT) is helping a [NICHE] creator build their brand faster. Show the before and after. Natural, not salesy. Ends with curiosity about SHIFT.",
+   cta:"What would you create if content took you 10 minutes instead of 2 hours?"
+  },
+  {day:23,
+   h1:"I created my 3-year vision in SHIFT today. This image represents everything I'm working toward…",
+   h2:"Day 23. I asked SHIFT to show me my future. Here's what it created — and here's what it means…",
+   prompt:"Create a powerful, specific future-vision image for a [NICHE] entrepreneur. It should represent freedom, success, impact, and fulfillment 3 years from now. The kind of image that gives someone goosebumps.",
+   cta:"What does your 3-year vision look like? Describe it below — I'd love to know."
+  },
+  {day:24,
+   h1:"Leverage changed everything for me. Here's the simple version of why AI is the greatest leverage tool alive…",
+   h2:"The moment I understood leverage in [niche], my whole approach shifted. Here's what that looks like with AI…",
+   prompt:"Write a clear, compelling 60-second script about leverage and how tools like SHIFT give everyday people in [NICHE] an unfair advantage. Practical and inspiring. Ends with an invitation to learn more about SHIFT.",
+   cta:"Where do you need more leverage in your life or business right now?"
+  },
+  {day:25,
+   h1:"Time freedom isn't about doing nothing. It's about doing only what matters. Here's my version of that…",
+   h2:"Day 25. Here's what building with SHIFT has given me that I didn't expect — and it has nothing to do with money…",
+   prompt:"Write a personal, reflective caption about time freedom and what it means for someone building in [NICHE] using AI tools like SHIFT. Aspirational but grounded. Feels earned.",
+   cta:"What would you do with your time if content creation was no longer a burden?"
+  },
+  {day:26,
+   h1:"People keep asking me what SHIFT actually is. Here's the simplest explanation I can give…",
+   h2:"Day 26. Let me explain what I've been using for the past month in the most straightforward way possible…",
+   prompt:"Write a simple, clear 60-second explanation of what SHIFT is and what it does — for someone in [NICHE] who has never heard of it. No jargon. No hype. Just: here's what it does, here's who it's for, here's how to learn more.",
+   cta:"Questions about SHIFT? Drop them below or send me a message — I'll answer everything."
+  },
+  {day:27,
+   h1:"27 days using SHIFT. My honest, unfiltered review — the good, the great, and the unexpected…",
+   h2:"Day 27. Here's everything I've created with SHIFT this month and what I actually think of it…",
+   prompt:"Write an authentic, personal 60-second review of using SHIFT for 27 days as a [NICHE] creator. What you love, what surprised you, what you've made, and who you'd recommend it to. Sounds like a friend talking, not an ad.",
+   cta:"If you want to know more about SHIFT, send me a DM. Happy to share everything — zero pressure."
+  },
+  {day:28,
+   h1:"The opportunity most people in [niche] are completely sleeping on right now. Let me show you what I see…",
+   h2:"While everyone is busy doing this the old way, a small group of people have figured something out…",
+   prompt:"Write an insightful 60-second script about a massive opportunity in [NICHE] that most people are missing — specifically the opportunity to use AI like SHIFT to build faster, create more, and earn from their content. Specific and timely.",
+   cta:"Are you seeing this opportunity? Or does it feel too new? Tell me honestly below."
+  },
+  {day:29,
+   h1:"If you've been curious about SHIFT — this one is for you. No pitch, no pressure. Just the truth…",
+   h2:"Day 29. A simple, honest invitation for anyone who's been watching and wondering what I've been using…",
+   prompt:"Write a warm, low-pressure 60-second script inviting people in [NICHE] to learn more about SHIFT. Not a sales pitch — a genuine invitation from someone who has used it for 29 days and wants to share it. Ends with: 'Send me a message if you're curious — I'll tell you everything.'",
+   cta:"Curious? Send me a message. No pitch, no pressure — just a real conversation."
+  },
+  {day:30,
+   h1:"30 days. 30 posts. All created with SHIFT. Here's everything I built — and everything I learned…",
+   h2:"Day 30. The finale. Here's the honest truth about what this challenge gave me — and what it can give you…",
+   prompt:"Write a powerful, celebratory 30-day challenge finale script for a [NICHE] creator. Share what you built, what surprised you, and what SHIFT made possible. Grateful, honest, and ends with a genuine invitation: 'If you're curious about SHIFT, send me a message. I'd love to show you what's possible.'",
+   cta:"If anything from these 30 days resonated — or if you're curious about SHIFT — send me a message. This is just the beginning."
+  }
+];
+w4.forEach(function(d){
+  NICHES.forEach(function(n){
+    PLANS[d.day+"-"+n]=pl(
+      d.h1.replace(/\[niche\]/g,n),
+      d.h2.replace(/\[niche\]/g,n),
+      d.prompt.replace(/\[NICHE\]/g,n).replace(/\[niche\]/g,n),
+      d.cta
+    );
+  });
+});
+
+function copyText(txt){
+  navigator.clipboard.writeText(txt).then(function(){
+    var btns=document.querySelectorAll('.copy-btn');
+    btns.forEach(function(b){b.textContent='Copied!';});
+    setTimeout(function(){btns.forEach(function(b){b.textContent='Copy';});},2000);
+  });
+}
 
 function render(){
   var w=WEEKS[S.week];
   var d=S.day!==null?w.days.find(function(x){return x.day===S.day;}):null;
   var key=d?S.day+"-"+S.niche:null;
+  var plan=key?PLANS[key]:null;
   var h="";
+
   h+='<div class="hdr"><div class="hdr-eye">30-Day Activation Protocol</div>';
   h+='<div class="hdr-title">SHIFT Content Planner</div>';
-  h+='<div class="hdr-sub">Daily execution plans for all 30 days · 7 niches</div></div>';
+  h+='<div class="hdr-sub">Pick a week · pick a day · pick your niche · done</div></div>';
+
   h+='<div class="wnav">';
   for(var i=0;i<WEEKS.length;i++){
     h+='<button class="wtab'+(i===S.week?" on":"")+'" data-wi="'+i+'">';
     h+='<span class="wtab-num">'+WEEKS[i].label+"</span><span>"+WEEKS[i].theme+"</span></button>";
   }
   h+="</div>";
-  h+='<div class="wintro"><span class="gbadge">Goal</span><span class="gtext">'+w.goal+"</span></div>";
+
+  h+='<div class="wintro"><span class="gbadge">Focus</span><span class="gtext">'+w.goal+"</span></div>";
+
   h+='<div class="dgrid">';
   for(var j=0;j<w.days.length;j++){
     var day=w.days[j];
@@ -203,9 +480,10 @@ function render(){
     h+='<div class="dtopic">'+day.topic+"</div></div>";
   }
   h+="</div>";
+
   if(d){
-    h+='<div class="panel"><div class="phdr">';
-    h+='<span class="dbadge">Day '+d.day+"</span>";
+    h+='<div class="panel">';
+    h+='<div class="phdr"><span class="dbadge">Day '+d.day+'</span>';
     h+='<div class="pinfo"><div class="ptitle">'+d.type+"</div>";
     h+='<div class="pmeta">'+d.topic+"</div></div></div>";
     h+='<div class="nrow"><span class="nlbl">Your niche:</span><div class="chips">';
@@ -214,12 +492,29 @@ function render(){
     }
     h+="</div></div>";
     h+='<div class="out">';
-    var plan=PLANS[key];
-    h+='<div class="plan">'+(plan||"<p>Select a niche above to see your plan.</p>")+"</div>";
+
+    if(plan){
+      // Hook
+      h+='<div class="section"><div class="sec-label">Your Hook</div>';
+      h+='<div class="hook-box" id="hook1">'+plan[0]+'</div>';
+      h+='<div class="hook-box" id="hook2">'+plan[1]+'</div></div>';
+      // SHIFT Prompt
+      h+='<div class="section"><div class="sec-label">SHIFT Prompt — paste this into SHIFT Chat</div>';
+      h+='<div class="prompt-box" id="shiftprompt">'+plan[2]+'</div>';
+      h+='<button class="copy-btn" id="copybtn">Copy</button></div>';
+      // CTA
+      h+='<div class="section"><div class="sec-label">Your CTA — end every post with this</div>';
+      h+='<div class="cta-box">'+plan[3]+'</div></div>';
+    } else {
+      h+='<div class="section"><p style="color:#7a7570;font-size:13px">Select your niche above to see today\'s plan.</p></div>';
+    }
     h+="</div></div>";
   }
+
   h+='<div class="banner"><p><strong>The SHIFT Rule:</strong> Don\'t sell SHIFT — show what it helped you create. Curiosity converts better than promotion.</p></div>';
+
   document.getElementById("root").innerHTML=h;
+
   document.querySelectorAll(".wtab").forEach(function(el){
     el.addEventListener("click",function(){S.week=parseInt(this.dataset.wi);S.day=null;render();});
   });
@@ -229,6 +524,11 @@ function render(){
   document.querySelectorAll(".chip").forEach(function(el){
     el.addEventListener("click",function(){S.niche=this.dataset.niche;render();});
   });
+
+  var cb=document.getElementById("copybtn");
+  if(cb && plan){
+    cb.addEventListener("click",function(){ copyText(plan[2]); });
+  }
 }
 render();
 </script>
