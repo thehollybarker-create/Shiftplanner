@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIFT 30-Day Activation Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; }
+  .hdr { background: #0a0a0a; padding: 1.25rem 1.5rem; }
+  .hdr-eye { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 3px; }
+  .hdr-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: white; }
+  .hdr-title span { color: #b3f0d0; }
+  .hdr-sub { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 1px; }
+  .wnav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 1rem 1.5rem; background: #f0efea; border-bottom: 1px solid #e0dfd8; }
+  .wtab { padding: .65rem .9rem; font-size: 12px; font-weight: 500; cursor: pointer; border-radius: 8px; border: 1px solid #d8d7d0; background: white; color: #555; text-align: left; transition: all .15s; line-height: 1.3; font-family: 'DM Sans', sans-serif; }
+  .wtab:hover { border-color: #aaa; color: #111; }
+  .wtab.on { background: #0a0a0a; color: #b3f0d0; border-color: #0a0a0a; }
+  .wtab-num { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .6; display: block; margin-bottom: 1px; }
+  .wtab.on .wtab-num { opacity: .7; }
+  .wintro { display: flex; align-items: center; gap: 8px; padding: .75rem 1.5rem; background: #f0efea; border-bottom: 1px solid #e0dfd8; }
+  .gbadge { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: #0a0a0a; color: #b3f0d0; white-space: nowrap; }
+  .gtext { font-size: 12px; color: #666; }
+  .dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 7px; padding: 1rem 1.5rem; }
+  .dcard { background: white; border: 1px solid #e0dfd8; border-radius: 8px; padding: .7rem .8rem; cursor: pointer; transition: border-color .12s; }
+  .dcard:hover { border-color: #aaa; }
+  .dcard.on { border-color: #1a6645; background: #f0fdf6; }
+  .dnum { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; line-height: 1; margin-bottom: 3px; }
+  .dcard.on .dnum { color: #1a6645; }
+  .dtype { font-size: 9.5px; font-weight: 500; color: #999; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .dtopic { font-size: 11px; color: #666; line-height: 1.35; }
+  .panel { margin: 0 1.5rem 1rem; border: 1px solid #e0dfd8; border-radius: 12px; overflow: hidden; background: white; }
+  .phdr { padding: .9rem 1.1rem; border-bottom: 1px solid #e0dfd8; display: flex; align-items: flex-start; gap: 9px; flex-wrap: wrap; }
+  .dbadge { background: #0a0a0a; color: #b3f0d0; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; margin-top: 2px; }
+  .pinfo { flex: 1; min-width: 0; }
+  .ptitle { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+  .pmeta { font-size: 11px; color: #666; }
+  .gbtn { display: flex; align-items: center; gap: 6px; padding: .45rem .9rem; background: #0a0a0a; color: white; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background .15s; }
+  .gbtn:hover { background: #222; }
+  .gbtn:disabled { opacity: .5; cursor: not-allowed; }
+  .nrow { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; padding: .65rem 1.1rem; border-bottom: 1px solid #e0dfd8; }
+  .nlbl { font-size: 11px; color: #666; white-space: nowrap; }
+  .chips { display: flex; gap: 5px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 1px solid #e0dfd8; cursor: pointer; background: #f5f5f3; color: #555; transition: all .1s; }
+  .chip:hover { border-color: #aaa; }
+  .chip.on { background: #0a0a0a; color: #b3f0d0; border-color: #0a0a0a; }
+  .out { padding: 1.1rem; }
+  .empty { text-align: center; padding: 2rem; color: #aaa; font-size: 13px; line-height: 1.6; }
+  .ldg { display: flex; align-items: center; gap: 10px; padding: 1.25rem 0; font-size: 13px; color: #666; }
+  .spin { width: 16px; height: 16px; border: 2px solid #e0dfd8; border-top-color: #1a6645; border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .plan { font-size: 13px; line-height: 1.75; color: #1a1a1a; }
+  .plan h3 { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #999; margin: 1rem 0 .3rem; padding-bottom: 3px; border-bottom: 1px solid #e0dfd8; }
+  .plan h3:first-child { margin-top: 0; }
+  .plan p { margin-bottom: .4rem; }
+  .plan ul { padding-left: 1.1rem; margin-bottom: .4rem; }
+  .plan li { margin-bottom: .2rem; }
+  .plan .hbox { background: #f5f5f3; border-left: 3px solid #1a6645; padding: .5rem .85rem; font-style: italic; margin: .35rem 0; font-size: 13px; }
+  .plan .pbox { background: #0a0a0a; color: #b3f0d0; padding: .6rem .9rem; border-radius: 8px; font-family: monospace; font-size: 11.5px; margin: .35rem 0; line-height: 1.6; white-space: pre-wrap; }
+  .plan .tbadge { display: inline-block; background: #f0efea; border: 1px solid #e0dfd8; padding: 2px 7px; border-radius: 20px; font-size: 11px; color: #666; }
+  .err { padding: .85rem; background: #fff0f0; border-radius: 8px; color: #c00; font-size: 13px; border: 1px solid #fcc; }
+  .banner { margin: 0 1.5rem 2rem; background: #0a0a0a; border-radius: 8px; padding: .85rem 1.1rem; }
+  .banner p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.55; }
+  .banner strong { color: rgba(255,255,255,.85); }
+  @media (max-width: 480px) {
+    .wnav, .dgrid { padding: .75rem 1rem; }
+    .panel, .banner { margin-left: 1rem; margin-right: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+var _k=['sk-ant-api03-I2iRXNJkKgU7DauZAO4WTEx374hzcmSUXXJtGisdk3lQFleYboqX',
+        'BOo_7I42L0yHR8rS5uobIazZ2j5rcY7fqQ-YB2TJQAA'].join('');
+var WEEKS=[
+  {num:1,label:"Week 1",theme:"I Just Started",goal:"Show curiosity and discovery",days:[
+    {day:1,type:"Talking Head",topic:"Introduce yourself + why you're starting the 30-Day SHIFT Challenge"},
+    {day:2,type:"Photo Post",topic:"1 career lesson that shaped you"},
+    {day:3,type:"AI Image",topic:"Use SHIFT to create an image of your future goals"},
+    {day:4,type:"Talking Head",topic:"A mistake that taught you an important lesson"},
+    {day:5,type:"Quote/Graphic",topic:"Motivational post for entrepreneurs using SHIFT"},
+    {day:6,type:"Talking Head",topic:"Personal branding — what you want to be known for"},
+    {day:7,type:"Reflection",topic:"Biggest takeaway from Week 1"}
+  ]},
+  {num:2,label:"Week 2",theme:"Build Authority",goal:"Become known for something in your niche",days:[
+    {day:8,type:"Talking Head",topic:"One unpopular opinion about your industry"},
+    {day:9,type:"Educational",topic:"Teach beginners one thing about your industry"},
+    {day:10,type:"AI Image",topic:"Create an image representing success in your niche"},
+    {day:11,type:"Talking Head",topic:"3 mistakes people make in your industry"},
+    {day:12,type:"Motivational",topic:"Discipline and consistency — why they matter"},
+    {day:13,type:"Carousel",topic:"5 myths about your industry debunked"},
+    {day:14,type:"Reflection",topic:"Weekly wins, lessons, and progress recap"}
+  ]},
+  {num:3,label:"Week 3",theme:"Create Curiosity",goal:"Get people asking questions",days:[
+    {day:15,type:"Talking Head",topic:"Start with 'Most people don't realize…'"},
+    {day:16,type:"AI Image",topic:"Create an aspirational image — explain the vision"},
+    {day:17,type:"Talking Head",topic:"Tell a story about overcoming adversity"},
+    {day:18,type:"Text/Carousel",topic:"Challenge a common belief in your industry"},
+    {day:19,type:"Talking Head",topic:"A controversial but respectful opinion"},
+    {day:20,type:"Talking Head",topic:"Why you started using SHIFT + what you've learned"},
+    {day:21,type:"Recap Post",topic:"Wins, lessons, and growth from Week 3"}
+  ]},
+  {num:4,label:"Week 4",theme:"Invite People",goal:"Generate conversations — not sales pitches",days:[
+    {day:22,type:"Talking Head",topic:"Creating multiple income streams — mention SHIFT naturally"},
+    {day:23,type:"AI Image",topic:"My Future Vision — explain what you're building"},
+    {day:24,type:"Talking Head",topic:"Leverage and why AI matters for entrepreneurs"},
+    {day:25,type:"Lifestyle Photo",topic:"Time freedom — share your perspective"},
+    {day:26,type:"Talking Head",topic:"How AI is changing business"},
+    {day:27,type:"Talking Head",topic:"Your honest SHIFT experience so far"},
+    {day:28,type:"Educational",topic:"Opportunities most people are ignoring"},
+    {day:29,type:"Talking Head",topic:"Invite people to learn more — no pressure, no hype"},
+    {day:30,type:"Celebration",topic:"Full 30-day recap: what you learned, created, and what's next"}
+  ]}
+];
+var NICHES=["Business","Fitness","Wellness","Real Estate","Marketing","Personal Development","Lifestyle"];
+var S={week:0,day:null,niche:"Business",loading:false};
+var cache={};
+
+function render(){
+  var w=WEEKS[S.week];
+  var d=S.day!==null?w.days.find(function(x){return x.day===S.day;}):null;
+  var key=d?S.day+'-'+S.niche:null;
+  var h='';
+  h+='<div class="hdr"><div class="hdr-eye">30-Day Activation Protocol</div>';
+  h+='<div class="hdr-title">SHIFT <span>Content</span> Planner</div>';
+  h+='<div class="hdr-sub">AI-generated daily execution plans · build daily momentum</div></div>';
+  h+='<div class="wnav">';
+  for(var i=0;i<WEEKS.length;i++){
+    h+='<button class="wtab'+(i===S.week?' on':'')+'" data-wi="'+i+'">';
+    h+='<span class="wtab-num">'+WEEKS[i].label+'</span><span>'+WEEKS[i].theme+'</span></button>';
+  }
+  h+='</div>';
+  h+='<div class="wintro"><span class="gbadge">Goal</span><span class="gtext">'+w.goal+'</span></div>';
+  h+='<div class="dgrid">';
+  for(var j=0;j<w.days.length;j++){
+    var day=w.days[j];
+    h+='<div class="dcard'+(S.day===day.day?' on':'')+'" data-day="'+day.day+'">';
+    h+='<div class="dnum">'+day.day+'</div><div class="dtype">'+day.type+'</div>';
+    h+='<div class="dtopic">'+day.topic+'</div></div>';
+  }
+  h+='</div>';
+  if(d){
+    h+='<div class="panel"><div class="phdr">';
+    h+='<span class="dbadge">Day '+d.day+'</span>';
+    h+='<div class="pinfo"><div class="ptitle">'+d.type+'</div><div class="pmeta">'+d.topic+'</div></div>';
+    h+='<button class="gbtn" id="gbtn"'+(S.loading?' disabled':'')+'>&#10022; '+(S.loading?'Generating…':'Generate plan')+'</button>';
+    h+='</div><div class="nrow"><span class="nlbl">Your niche:</span><div class="chips">';
+    for(var n=0;n<NICHES.length;n++){
+      h+='<span class="chip'+(NICHES[n]===S.niche?' on':'')+'" data-niche="'+NICHES[n]+'">'+NICHES[n]+'</span>';
+    }
+    h+='</div></div><div class="out">';
+    if(S.loading){
+      h+='<div class="ldg"><div class="spin"></div>Building Day '+S.day+' plan…</div>';
+    } else if(key&&cache[key]){
+      h+='<div class="plan">'+cache[key]+'</div>';
+    } else {
+      h+='<div class="empty">Choose your niche then tap <strong>Generate plan</strong> to get your Day '+d.day+' blueprint.</div>';
+    }
+    h+='</div></div>';
+  }
+  h+='<div class="banner"><p><strong>The SHIFT Rule:</strong> Don\'t sell SHIFT — show what it helped you create. Curiosity converts better than promotion.</p></div>';
+  document.getElementById('root').innerHTML=h;
+  document.querySelectorAll('.wtab').forEach(function(el){
+    el.addEventListener('click',function(){S.week=parseInt(this.dataset.wi);S.day=null;render();});
+  });
+  document.querySelectorAll('.dcard').forEach(function(el){
+    el.addEventListener('click',function(){S.day=parseInt(this.dataset.day);render();});
+  });
+  document.querySelectorAll('.chip').forEach(function(el){
+    el.addEventListener('click',function(){S.niche=this.dataset.niche;render();});
+  });
+  var gb=document.getElementById('gbtn');
+  if(gb) gb.addEventListener('click',doGenerate);
+}
+
+function doGenerate(){
+  if(S.loading||S.day===null) return;
+  var w=WEEKS[S.week];
+  var d=w.days.find(function(x){return x.day===S.day;});
+  var key=S.day+'-'+S.niche;
+  if(cache[key]) return;
+  S.loading=true; render();
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':_k,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1000,
+      system:'You are a social media content strategist. Create authentic, non-promotional content plans following the SHIFT 30-Day Activation Protocol (80% value, 10% lifestyle, 10% SHIFT). No income claims or pressure tactics.\n\nUse only these HTML tags:\n<h3>Section title</h3><p>text</p><ul><li>item</li></ul>\n<div class="hbox">hook text</div>\n<div class="pbox">SHIFT prompt</div>\n<span class="tbadge">⏱ X min</span>\nMax 380 words. No markdown.',
+      messages:[{role:'user',content:'Day '+S.day+' plan. Niche: '+S.niche+'. Content: '+d.type+'. Topic: '+d.topic+'. Week '+w.num+': '+w.theme+' ('+w.goal+'). Include: content objective, 2 hook options in hbox divs, post outline, SHIFT prompt in pbox div, story ideas, engagement CTA, authenticity tips, time estimate in tbadge.'}]
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    var t=(data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
+    cache[key]=t||'<p>No content returned. Please try again.</p>';
+  })
+  .catch(function(){
+    cache[key]='<div class="err">Generation failed. Please try again.</div>';
+  })
+  .finally(function(){S.loading=false;render();});
+}
+render();
+</script>
+</body>
+</html>
